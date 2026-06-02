@@ -984,7 +984,7 @@
                     <div class="rank-badge-inner">
                         <span class="rank-badge-label">Terbaik</span>
                         <span class="rank-badge-number">
-                            0${rank}
+                            ${rank}
                             <span class="rank-badge-dot" style="background-color: ${accentColor};"></span>
                         </span>
                     </div>
@@ -1208,7 +1208,7 @@
 
                                 <div class="student-intro-rank-top-fixed">
                                     <span class="student-intro-rank-label">Terbaik</span>
-                                    <span class="student-intro-rank-number">0${student.rank}</span>
+                                    <span class="student-intro-rank-number">${student.rank}</span>
                                 </div>
 
                                 <span class="student-intro-spark" style="left:14%; top:22%; background:${accentColor}; animation-delay:0.1s;"></span>
@@ -1476,7 +1476,7 @@
 
                             <div class="student-intro-rank-seq">
                                 <span class="student-intro-rank-label">Terbaik</span>
-                                <span class="student-intro-rank-number">0${student.rank}</span>
+                                <span class="student-intro-rank-number">${student.rank}</span>
                             </div>
 
                             <div class="student-intro-rank-top-fixed">
@@ -2018,7 +2018,7 @@
                     : (slide.type === 'student-identity'
                         ? 'Profil & Ortu'
                         : (slide.type === 'student-achievements' ? 'Awan Prestasi' : 'Cita-Cita & Harapan'));
-                descEl.innerText = `Menampilkan ${stage} dari nominasi terbaik Peringkat 0${slide.student.rank}.`;
+                descEl.innerText = `Menampilkan ${stage} dari nominasi terbaik Peringkat ${slide.student.rank}.`;
                 typeEl.innerText = `S-${slide.student.rank}`;
             } else if (slide.type === 'networking') {
                 titleEl.innerText = "Jejaring Matawaru";
