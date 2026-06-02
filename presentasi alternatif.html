@@ -371,6 +371,7 @@
         let slides = [];
         let currentSlideIndex = 0;
         let presWindow = null;
+        let highReadabilityMode = true;
 
         // State Autoplay
         let isAutoPlay = false;
@@ -419,6 +420,10 @@
                     </div>
                 </div>
             `;
+        }
+
+        function getTargetSchoolPlaceholder(rank) {
+            return `SMA/MA/SMK Tujuan Peringkat ${rank} (isi nanti)`;
         }
     </script>
 
@@ -514,13 +519,19 @@
                                 <h1 class="font-display-journal text-6xl font-extrabold tracking-tight mb-4 leading-none text-black/90 uppercase">${student.name}</h1>
                                 <div class="w-16 h-[2px] bg-black/20 my-6"></div>
                                 <div class="space-y-4">
-                                    <div>
-                                        <span class="font-sans text-[10px] font-extrabold uppercase tracking-widest text-black/40 block">Putra / Putri Kebanggaan Dari:</span>
-                                        <p class="font-serif-journal text-3xl font-bold text-black/80">${student.parents}</p>
+                                    <div class="bg-white/60 border border-black/10 rounded-2xl p-5 shadow-sm">
+                                        <span class="font-sans text-[10px] font-extrabold uppercase tracking-widest text-black/45 block mb-1">Putra / Putri Kebanggaan Dari</span>
+                                        <p class="font-serif-journal text-3xl font-bold text-black/85 leading-tight">${student.parents}</p>
                                     </div>
-                                    <div class="pt-4">
-                                        <span class="font-sans text-[10px] font-extrabold uppercase tracking-widest text-black/40 block">Almamater Luhur:</span>
-                                        <p class="font-sans text-sm font-semibold tracking-wide text-black/60 uppercase">MTs Negeri 1 Maluku Tengah</p>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <div class="bg-white/50 border border-black/10 rounded-xl p-4">
+                                            <span class="font-sans text-[10px] font-extrabold uppercase tracking-widest text-black/45 block mb-1">Almamater</span>
+                                            <p class="font-sans text-sm font-semibold tracking-wide text-black/70 uppercase">MTs Negeri 1 Maluku Tengah</p>
+                                        </div>
+                                        <div class="bg-white/70 border border-black/10 rounded-xl p-4" style="box-shadow: 0 8px 18px rgba(0,0,0,0.08);">
+                                            <span class="font-sans text-[10px] font-extrabold uppercase tracking-widest text-black/45 block mb-1">Sekolah Tujuan</span>
+                                            <p class="font-sans text-sm font-bold tracking-wide text-black/80">${getTargetSchoolPlaceholder(student.rank)}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -690,6 +701,129 @@
     </script>
 
     <script>
+        function renderReadableSlide(slide) {
+            if (!slide) return '';
+
+            if (slide.type === 'cover') {
+                return `
+                    <div class="h-full w-full flex flex-col items-center justify-center text-center px-12">
+                        <h1 class="font-display-journal text-[118px] font-black text-[#1F1B18] leading-none mb-6">MATAWARU</h1>
+                        <p class="font-sans text-[44px] font-bold text-black/85 mb-5">Pelepasan Siswa Kelas 9</p>
+                        <p class="font-sans text-[34px] font-semibold text-black/70">10 Besar Lulusan Terbaik Angkatan 2026</p>
+                    </div>
+                `;
+            }
+
+            if (slide.type === 'intro') {
+                return `
+                    <div class="h-full w-full flex flex-col justify-center px-14">
+                        <h2 class="font-display-journal text-[84px] font-black text-center text-black/90 mb-10">MATAWARU</h2>
+                        <div class="grid grid-cols-1 gap-4 max-w-5xl mx-auto w-full">
+                            <div class="bg-white/75 border border-black/10 rounded-2xl px-8 py-6 text-[40px] font-bold text-black/85">M - Mandiri</div>
+                            <div class="bg-white/75 border border-black/10 rounded-2xl px-8 py-6 text-[40px] font-bold text-black/85">A - Tangguh</div>
+                            <div class="bg-white/75 border border-black/10 rounded-2xl px-8 py-6 text-[40px] font-bold text-black/85">W - Wawasan Luas</div>
+                            <div class="bg-white/75 border border-black/10 rounded-2xl px-8 py-6 text-[40px] font-bold text-black/85">R - Rendah Hati</div>
+                            <div class="bg-white/75 border border-black/10 rounded-2xl px-8 py-6 text-[40px] font-bold text-black/85">U - Unggul</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (slide.type === 'student-identity' && slide.student) {
+                const student = slide.student;
+                const accentColor = student.themeColor;
+                const photo = buildStudentPhoto(student.rank, 'resmi', 'Foto Resmi', accentColor);
+                return `
+                    <div class="grid grid-cols-12 gap-8 items-center h-full px-4">
+                        <div class="col-span-8">
+                            <span class="inline-block text-[30px] font-extrabold uppercase tracking-wide bg-black/10 rounded-xl px-4 py-1.5 mb-5">Peringkat 0${student.rank}</span>
+                            <h1 class="font-display-journal text-[88px] font-black leading-[0.95] text-black/90 uppercase mb-6">${student.name}</h1>
+                            <div class="grid grid-cols-1 gap-3">
+                                <div class="bg-white/75 border border-black/10 rounded-2xl px-7 py-5">
+                                    <p class="text-[30px] font-semibold text-black/85">${student.parents}</p>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="bg-white/70 border border-black/10 rounded-xl px-5 py-4">
+                                        <p class="text-[26px] font-bold text-black/80 uppercase">MTsN 1 Maluku Tengah</p>
+                                    </div>
+                                    <div class="bg-white/80 border border-black/10 rounded-xl px-5 py-4">
+                                        <p class="text-[25px] font-bold text-black/85">${getTargetSchoolPlaceholder(student.rank)}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-4 flex justify-center">${photo}</div>
+                    </div>
+                `;
+            }
+
+            if (slide.type === 'student-achievements' && slide.student) {
+                const student = slide.student;
+                const accentColor = student.themeColor;
+                const photo = buildStudentPhoto(student.rank, 'bebas1', 'Momen Prestasi', accentColor);
+                return `
+                    <div class="grid grid-cols-12 gap-8 items-center h-full px-4">
+                        <div class="col-span-8">
+                            <h2 class="font-display-journal text-[74px] font-black text-black/90 leading-none mb-4">Prestasi Utama</h2>
+                            <p class="text-[36px] font-extrabold text-black/85 uppercase mb-6">${student.name}</p>
+                            <ul class="space-y-3">
+                                ${student.achievements.slice(0, 3).map((item, idx) => `
+                                    <li class="bg-white/75 border border-black/10 rounded-xl px-6 py-4">
+                                        <p class="text-[28px] font-semibold text-black/85 leading-tight">${idx + 1}. ${item}</p>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                        <div class="col-span-4 flex justify-center">${photo}</div>
+                    </div>
+                `;
+            }
+
+            if (slide.type === 'student-future' && slide.student) {
+                const student = slide.student;
+                const accentColor = student.themeColor;
+                const photo = buildStudentPhoto(student.rank, 'bebas2', 'Momen Karir', accentColor);
+                return `
+                    <div class="grid grid-cols-12 gap-8 items-center h-full px-4">
+                        <div class="col-span-8">
+                            <h2 class="font-display-journal text-[72px] font-black text-black/90 leading-none mb-4">Impian & Karir</h2>
+                            <p class="text-[34px] font-extrabold text-black/85 uppercase mb-5">${student.name}</p>
+                            <div class="bg-white/78 border border-black/10 rounded-2xl px-7 py-5 mb-4">
+                                <p class="font-display-journal text-[50px] font-bold text-black/90 leading-tight">${student.futureCareer}</p>
+                            </div>
+                            <div class="bg-white/70 border border-black/10 rounded-2xl px-7 py-5">
+                                <p class="text-[27px] font-semibold italic text-black/80 leading-tight">"${student.aspiration}"</p>
+                            </div>
+                        </div>
+                        <div class="col-span-4 flex justify-center">${photo}</div>
+                    </div>
+                `;
+            }
+
+            if (slide.type === 'networking') {
+                return `
+                    <div class="h-full w-full flex flex-col justify-center items-center text-center px-12 text-white">
+                        <h1 class="font-display-journal text-[90px] font-black leading-none mb-6">JEJARING MATAWARU</h1>
+                        <p class="text-[44px] font-bold text-white/90 mb-4">10 Siswa Berprestasi</p>
+                        <p class="text-[30px] font-semibold text-white/75">Satu Angkatan, Satu Semangat, Satu Masa Depan</p>
+                    </div>
+                `;
+            }
+
+            if (slide.type === 'outro') {
+                return `
+                    <div class="h-full w-full flex flex-col justify-center items-center text-center px-12">
+                        <h1 class="font-display-journal text-[116px] font-black text-[#2C2A29] leading-none mb-7 uppercase">Terima Kasih</h1>
+                        <p class="text-[40px] font-semibold text-black/80 max-w-5xl leading-tight">
+                            Selamat melangkah ke masa depan. Jadilah generasi yang unggul, tangguh, dan membanggakan.
+                        </p>
+                    </div>
+                `;
+            }
+
+            return slide.render();
+        }
+
         function renderPresentationView() {
             const root = document.getElementById('app-root');
             root.className = "min-h-screen flex items-center justify-center overflow-hidden w-full bg-[#0d0d11]";
@@ -699,7 +833,7 @@
                     <div id="canvas" class="paper-texture relative flex flex-col justify-between p-12 overflow-hidden select-none w-[1280px] h-[720px] transition-colors duration-700">
                         
                         <!-- Header Proyektor -->
-                        <div class="flex justify-between items-center w-full relative z-10">
+                        <div class="flex justify-between items-center w-full relative z-10 ${highReadabilityMode ? 'hidden' : ''}">
                             <div class="flex items-center gap-3">
                                 <span class="w-2.5 h-2.5 rounded-full bg-black/20" id="live-indicator"></span>
                                 <span class="font-sans text-[10px] tracking-[0.25em] text-black/40 font-extrabold uppercase">PELEPASAN MTsN 1 MALUKU TENGAH</span>
@@ -710,12 +844,12 @@
                         </div>
 
                         <!-- Area Konten Slide Aktif -->
-                        <div class="relative z-10 flex-grow flex items-center w-full h-[500px]" id="slide-viewport">
+                        <div class="relative z-10 flex-grow flex items-center w-full ${highReadabilityMode ? 'h-full' : 'h-[500px]'}" id="slide-viewport">
                             <!-- Diisi lewat fungsi JS -->
                         </div>
 
                         <!-- Footer Proyektor -->
-                        <div class="flex justify-between items-center w-full pt-4 border-t border-black/5 relative z-10">
+                        <div class="flex justify-between items-center w-full pt-4 border-t border-black/5 relative z-10 ${highReadabilityMode ? 'hidden' : ''}">
                             <span id="slide-counter" class="font-sans text-[10px] text-black/30 tracking-[0.2em] font-extrabold">SLIDE -- / --</span>
                             <span class="font-sans text-[9px] text-black/20 tracking-wider font-semibold">TAMPILAN LAYAR UTAMA (16:9)</span>
                         </div>
@@ -796,9 +930,11 @@
             }
 
             // Ganti Konten dengan animasi
+            const slideMarkup = highReadabilityMode ? renderReadableSlide(slide) : slide.render();
+
             viewport.innerHTML = `
                 <div class="w-full h-full slide-fade-enter slide-motion" id="slide-transition-box">
-                    ${slide.render()}
+                    ${slideMarkup}
                 </div>
             `;
 
