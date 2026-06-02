@@ -58,17 +58,66 @@
             box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.05);
         }
 
-        /* Bingkai Polaroid Khas */
-        .polaroid-frame {
-            background: #ffffff;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.06);
-            transform: rotate(-1.5deg);
-            transition: all 0.5s ease-in-out;
+        /* Foto Siswa Tanpa Frame */
+        .photo-wrap {
+            position: relative;
+            width: 300px;
+            height: 390px;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 24px 50px rgba(0, 0, 0, 0.22), 0 8px 18px rgba(0, 0, 0, 0.15);
+            animation: photoFloat 6.5s ease-in-out infinite;
         }
 
-        .polaroid-frame:hover {
-            transform: rotate(1deg) scale(1.02);
+        .photo-wrap::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.28), rgba(0,0,0,0.08) 35%, rgba(0,0,0,0));
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .photo-wrap::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent 22%, rgba(255, 255, 255, 0.3) 50%, transparent 78%);
+            transform: translateX(-120%);
+            animation: photoShimmer 7s linear infinite;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .photo-backdrop {
+            position: absolute;
+            inset: -14px;
+            border-radius: 36px;
+            filter: blur(16px);
+            opacity: 0.38;
+            z-index: 0;
+            animation: backdropPulse 8s ease-in-out infinite;
+        }
+
+        .photo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: photoZoom 14s ease-in-out infinite alternate;
+            transform-origin: center center;
+        }
+
+        .photo-tag {
+            position: absolute;
+            left: 14px;
+            bottom: 12px;
+            z-index: 4;
+            color: rgba(255,255,255,0.92);
+            font-size: 10px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-weight: 800;
+            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
         }
 
         /* Efek Plester / Tape Scrapbook */
@@ -85,13 +134,19 @@
         /* Transisi Slide Halus */
         .slide-fade-enter {
             opacity: 0;
-            transform: translateY(10px);
+            transform: translateY(16px) scale(0.987);
+            filter: blur(3px);
         }
 
         .slide-fade-active {
             opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+            transition: opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1), transform 0.65s cubic-bezier(0.25, 1, 0.5, 1), filter 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .slide-motion {
+            animation: slideBreath 11s ease-in-out infinite;
         }
 
         /* Desain Scrollbar Tersembunyi */
@@ -107,6 +162,31 @@
         @keyframes pulseGlow {
             0%, 100% { transform: scale(1); opacity: 0.8; }
             50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 12px var(--glow-color)); }
+        }
+
+        @keyframes photoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes photoZoom {
+            0% { transform: scale(1.02) translateX(-0.8%); }
+            100% { transform: scale(1.07) translateX(0.8%); }
+        }
+
+        @keyframes photoShimmer {
+            0% { transform: translateX(-120%); }
+            100% { transform: translateX(120%); }
+        }
+
+        @keyframes backdropPulse {
+            0%, 100% { opacity: 0.33; transform: scale(1); }
+            50% { opacity: 0.45; transform: scale(1.04); }
+        }
+
+        @keyframes slideBreath {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
         }
 
         .pulse-node {
@@ -297,6 +377,49 @@
         let autoPlayTimer = null;
         let countdownTimer = null;
         let countdownValue = 0;
+
+        function getPhotoPath(rank, variant) {
+            return `foto/${rank}_${variant}.PNG`;
+        }
+
+        function fallbackStudentPhoto(img) {
+            const rank = img.dataset.rank;
+            const variant = img.dataset.variant;
+            const fallbackOrder = variant === 'resmi' ? ['bebas1', 'bebas2'] : ['resmi', 'bebas1', 'bebas2'];
+            const tried = (img.dataset.tried || '').split(',').filter(Boolean);
+
+            for (const fallbackVariant of fallbackOrder) {
+                if (!tried.includes(fallbackVariant)) {
+                    tried.push(fallbackVariant);
+                    img.dataset.tried = tried.join(',');
+                    img.src = getPhotoPath(rank, fallbackVariant);
+                    return;
+                }
+            }
+
+            img.onerror = null;
+            img.style.opacity = '0.2';
+        }
+
+        function buildStudentPhoto(rank, variant, label, accentColor) {
+            return `
+                <div class="relative w-[300px] h-[390px]">
+                    <div class="photo-backdrop" style="background: radial-gradient(circle, ${accentColor} 0%, transparent 70%);"></div>
+                    <div class="photo-wrap">
+                        <img
+                            src="${getPhotoPath(rank, variant)}"
+                            alt="Foto siswa peringkat ${rank}"
+                            class="photo-img"
+                            data-rank="${rank}"
+                            data-variant="${variant}"
+                            data-tried="${variant}"
+                            onerror="fallbackStudentPhoto(this)"
+                        />
+                        <span class="photo-tag">${label}</span>
+                    </div>
+                </div>
+            `;
+        }
     </script>
 
     <script>
@@ -371,24 +494,10 @@
             // Slide 3 s.d 32: 10 Siswa (Masing-masing 3 slide)
             studentsOrdered.forEach(student => {
                 const accentColor = student.themeColor;
-                
-                // MOCKUP AVATAR VEKTOR / SCRAPBOOK JURNAL YANG MEWAH
-                const photoMockup = `
-                    <div class="w-[280px] h-[350px] polaroid-frame p-4 relative flex flex-col justify-between">
-                        <div class="w-full h-[250px] bg-gradient-to-tr ${student.avatarGradient} rounded-lg flex flex-col justify-center items-center text-white relative overflow-hidden shadow-inner">
-                            <!-- Pola Geometris Scrapbook -->
-                            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_0)] bg-[size:16px_16px]"></div>
-                            <span class="font-display-journal text-8xl font-black tracking-tighter opacity-20 select-none">${student.rank}</span>
-                            <div class="absolute bottom-4 left-4 text-left">
-                                <span class="text-[10px] uppercase font-bold tracking-[0.2em] opacity-80 block">MATAWARU LULUSAN</span>
-                                <span class="font-display-journal text-xl font-bold leading-none block">TERBAIK ${student.rank}</span>
-                            </div>
-                        </div>
-                        <div class="text-center pt-2">
-                            <span class="font-serif-journal italic text-lg font-bold text-black/70">Matawaru Generation</span>
-                        </div>
-                    </div>
-                `;
+
+                const photoResmi = buildStudentPhoto(student.rank, 'resmi', 'Foto Resmi', accentColor);
+                const photoBebas1 = buildStudentPhoto(student.rank, 'bebas1', 'Momen Prestasi', accentColor);
+                const photoBebas2 = buildStudentPhoto(student.rank, 'bebas2', 'Momen Karir', accentColor);
 
                 // Slide A: Identitas Siswa & Orang Tua
                 slides.push({
@@ -417,7 +526,7 @@
                             </div>
                             <div class="col-span-5 flex justify-center items-center relative">
                                 <div class="washi-tape -top-5 w-32 h-8 left-[15%] rotate-[-6deg]"></div>
-                                ${photoMockup}
+                                ${photoResmi}
                             </div>
                         </div>
                     `
@@ -446,7 +555,7 @@
                             </div>
                             <div class="col-span-5 flex justify-center items-center relative">
                                 <div class="washi-tape -top-5 w-32 h-8 left-[45%] rotate-[3deg]"></div>
-                                ${photoMockup}
+                                ${photoBebas1}
                             </div>
                         </div>
                     `
@@ -476,7 +585,7 @@
                             </div>
                             <div class="col-span-5 flex justify-center items-center relative">
                                 <div class="washi-tape -top-5 w-32 h-8 left-[30%] rotate-[-4deg]"></div>
-                                ${photoMockup}
+                                ${photoBebas2}
                             </div>
                         </div>
                     `
@@ -529,7 +638,7 @@
                             <div class="text-center mt-4">
                                 <span class="font-sans text-xs font-extrabold uppercase tracking-[0.35em] text-[#FFD166] block mb-1">Kekuatan Kolektif</span>
                                 <h1 class="font-display-journal text-4xl font-extrabold leading-none uppercase">JEJARING MATAWARU</h1>
-                                <p class="font-serif-journal italic text-sm text-white/50 max-w-lg mx-auto mt-2">“Masing-masing dari kita unik, namun sebagai satu kesatuan rasi bintang, kita berdaya penuh berkontribusi bagi kebaikan komunitas kita.”</p>
+                                <p class="font-serif-journal italic text-sm text-white/50 max-w-lg mx-auto mt-2">"Masing-masing dari kita unik, namun sebagai satu kesatuan rasi bintang, kita berdaya penuh berkontribusi bagi kebaikan komunitas kita."</p>
                             </div>
                             
                             <!-- SVG Rasi Bintang Interaktif -->
@@ -539,8 +648,8 @@
                                 </g>
                                 <!-- Lingkaran Pusat MATAWARU -->
                                 <circle cx="${centerX}" cy="${centerY}" r="50" fill="#181622" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
-                                <text x="${centerX}" y="${centerY - 8}" fill="#ffffff" font-family="var(--font-display)" font-size="12" font-weight="bold" text-anchor="middle" tracking="2">ANGKATAN</p>
-                                <text x="${centerX}" y="${centerY + 14}" fill="#FFD166" font-family="var(--font-display)" font-size="18" font-weight="900" text-anchor="middle" letter-spacing="2">PELOPOR</p>
+                                <text x="${centerX}" y="${centerY - 8}" fill="#ffffff" font-family="var(--font-display)" font-size="12" font-weight="bold" text-anchor="middle" tracking="2">ANGKATAN</text>
+                                <text x="${centerX}" y="${centerY + 14}" fill="#FFD166" font-family="var(--font-display)" font-size="18" font-weight="900" text-anchor="middle" letter-spacing="2">PELOPOR</text>
                                 <g>
                                     ${nodesHtml}
                                 </g>
@@ -688,7 +797,7 @@
 
             // Ganti Konten dengan animasi
             viewport.innerHTML = `
-                <div class="w-full h-full slide-fade-enter" id="slide-transition-box">
+                <div class="w-full h-full slide-fade-enter slide-motion" id="slide-transition-box">
                     ${slide.render()}
                 </div>
             `;
