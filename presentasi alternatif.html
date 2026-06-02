@@ -190,6 +190,204 @@
             50% { transform: translateY(-2px); }
         }
 
+        @keyframes ornamentDrift {
+            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(0, -10px, 0) scale(1.06); }
+        }
+
+        @keyframes contentRise {
+            0% { opacity: 0; transform: translateY(24px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes titlePulse {
+            0%, 100% { text-shadow: 0 1px 0 rgba(0,0,0,0.06); }
+            50% { text-shadow: 0 8px 22px rgba(0,0,0,0.14); }
+        }
+
+        @keyframes missionCardEnter {
+            0% { opacity: 0; transform: translateY(26px) rotateX(8deg); }
+            100% { opacity: 1; transform: translateY(0) rotateX(0deg); }
+        }
+
+        @keyframes networkThumbFloat {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+            50% { transform: translate(-50%, -50%) translateY(-8px); }
+        }
+
+        @keyframes networkLinePulse {
+            0%, 100% { stroke-opacity: 0.16; }
+            50% { stroke-opacity: 0.38; }
+        }
+
+        @keyframes outroGlow {
+            0%, 100% { opacity: 0.35; transform: scale(1); }
+            50% { opacity: 0.62; transform: scale(1.08); }
+        }
+
+        @keyframes universalSlideItemIn {
+            0% {
+                opacity: 0;
+                transform: translateY(16px) scale(0.985);
+                filter: blur(2px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .ornament-float {
+            animation: ornamentDrift 8s ease-in-out infinite;
+        }
+
+        .content-rise {
+            animation: contentRise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        .title-pulse {
+            animation: titlePulse 6s ease-in-out infinite;
+        }
+
+        .mission-card-pop {
+            animation: missionCardEnter 0.75s cubic-bezier(0.18, 0.8, 0.3, 1) both;
+        }
+
+        .network-link-line {
+            animation: networkLinePulse 4.2s ease-in-out infinite;
+        }
+
+        .network-thumb {
+            position: absolute;
+            width: 88px;
+            height: 88px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 14px 26px rgba(0,0,0,0.25);
+            opacity: 0.24;
+            filter: saturate(0.95);
+            animation: networkThumbFloat 7s ease-in-out infinite;
+        }
+
+        .network-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .outro-glow {
+            animation: outroGlow 9s ease-in-out infinite;
+        }
+
+        .slide-item-enter {
+            opacity: 0;
+            animation: universalSlideItemIn 0.72s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation-delay: var(--enter-delay, 0s);
+            will-change: transform, opacity, filter;
+        }
+
+        .rank-badge-scrapbook {
+            position: absolute;
+            left: 50%;
+            bottom: -12px;
+            transform: translateX(-50%) rotate(var(--badge-rotation, -1.5deg));
+            z-index: 12;
+            min-width: 216px;
+            padding: 14px 20px 16px;
+            border-radius: 18px;
+            border: 1px solid var(--badge-border, rgba(84, 66, 48, 0.18));
+            background:
+                linear-gradient(180deg, rgba(255,255,255,0.94), var(--badge-tint, rgba(243,235,223,0.97))),
+                radial-gradient(rgba(44,42,41,0.04) 1px, transparent 0),
+                linear-gradient(90deg, transparent 0 4%, rgba(255,255,255,0.26) 16%, transparent 32%, rgba(44,42,41,0.025) 52%, transparent 72%, rgba(255,255,255,0.2) 88%, transparent 100%);
+            background-size: auto, 14px 14px, 100% 100%;
+            box-shadow: 0 14px 28px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.58);
+            backdrop-filter: blur(2px);
+            text-align: center;
+        }
+
+        .rank-badge-scrapbook::before {
+            content: "";
+            position: absolute;
+            inset: 7px;
+            border-radius: 13px;
+            border: 1px dashed rgba(44,42,41,0.12);
+            pointer-events: none;
+        }
+
+        .rank-badge-scrapbook::after {
+            content: "";
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            width: 74px;
+            height: 20px;
+            transform: translateX(-50%) rotate(var(--badge-tape-rotation, -3deg));
+            border-left: 2px dashed rgba(44,42,41,0.08);
+            border-right: 2px dashed rgba(44,42,41,0.08);
+            background: linear-gradient(180deg, rgba(255,255,255,0.58), rgba(238,230,214,0.4));
+            opacity: 0.95;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            pointer-events: none;
+        }
+
+        .rank-badge-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+        }
+
+        .rank-badge-label {
+            display: block;
+            font-family: var(--font-serif);
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(44,42,41,0.58);
+            line-height: 1;
+        }
+
+        .rank-badge-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: var(--font-display);
+            font-size: 42px;
+            line-height: 1;
+            font-weight: 900;
+            color: rgba(44,42,41,0.94);
+            letter-spacing: 0.04em;
+        }
+
+        .rank-badge-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            box-shadow: 0 0 0 4px rgba(255,255,255,0.45);
+            flex-shrink: 0;
+        }
+
+        .rank-badge-readable {
+            min-width: 258px;
+            bottom: -10px;
+            padding: 16px 22px 18px;
+        }
+
+        .rank-badge-readable .rank-badge-label {
+            font-size: 16px;
+        }
+
+        .rank-badge-readable .rank-badge-number {
+            font-size: 52px;
+        }
+
         .pulse-node {
             animation: pulseGlow 3s infinite ease-in-out;
         }
@@ -217,6 +415,7 @@
                 futureCareer: "Dosen / CEO",
                 futureDesc: "Menggabungkan kepemimpinan manajerial tingkat tinggi dengan dedikasi akademis untuk melahirkan generasi penerus bangsa yang unggul.",
                 aspiration: "Melangkah mantap ke jenjang luhur, menembus universitas impian, dan mewujudkan potensi terbaik diri.",
+                targetSchool: "MAN 1 Maluku Tengah",
                 themeColor: "#E6A18D", // Terracotta
                 avatarGradient: "from-[#F39C12] to-[#D35400]"
             },
@@ -234,6 +433,7 @@
                 futureCareer: "Tentara / Konten Kreator",
                 futureDesc: "Menjadi benteng pertahanan negara yang berdedikasi tinggi sekaligus menyebarkan inspirasi positif secara global melalui media kreatif digital.",
                 aspiration: "Menjadi versi diri terbaik yang membawa manfaat nyata bagi orang tua, sesama, dan lingkungan.",
+                targetSchool: "MAN 1 Maluku Tengah",
                 themeColor: "#F3D1C1", // Muted Peach
                 avatarGradient: "from-[#E67E22] to-[#C0392B]"
             },
@@ -249,6 +449,7 @@
                 futureCareer: "Dokter",
                 futureDesc: "Mengabdikan diri seutuhnya di dunia medis demi memberikan pelayanan kesehatan inklusif dan berkualitas bagi seluruh lapisan masyarakat.",
                 aspiration: "Membangun kesuksesan",
+                targetSchool: "SMA Negeri 1 Ambon",
                 themeColor: "#D4A373", // Soft Mustard
                 avatarGradient: "from-[#1ABC9C] to-[#16A085]"
             },
@@ -265,6 +466,7 @@
                 futureCareer: "Dokter Gigi Profesional",
                 futureDesc: "Menyebarkan senyum sehat ke penjuru daerah melalui kompetensi medis kedokteran gigi modern yang tulus dan mengayomi.",
                 aspiration: "Melangkah berani demi cita-cita, membahagiakan orang tua, dan membuktikan indahnya buah perjuangan.",
+                targetSchool: "MAN 1 Maluku Tengah",
                 themeColor: "#E9D8A6", // Warm Olive
                 avatarGradient: "from-[#2ECC71] to-[#27AE60]"
             },
@@ -282,6 +484,7 @@
                 futureCareer: "Teknisi Sipil",
                 futureDesc: "Merancang infrastruktur masa depan yang ramah lingkungan dan tangguh guna menunjang kemajuan peradaban.",
                 aspiration: "Menjadikan ilmu dan agama sebagai berkah penuntun hidup, tumbuh bijaksana, penuh kasih, dan berdampak luas.",
+                targetSchool: "SMA Negeri Siwalima Ambon",
                 themeColor: "#A3B19B", // Sage Green
                 avatarGradient: "from-[#3498DB] to-[#2980B9]"
             },
@@ -296,6 +499,7 @@
                 futureCareer: "Chief Executive / Board of Directors (BOD)",
                 futureDesc: "Memimpin korporasi global dengan kecerdasan strategis berbasis nilai-nilai kemandirian dan integritas kepemimpinan nasional.",
                 aspiration: "Gapai cita-cita, menjadi pribadi yang lebih baik, berguna bagi banyak orang.",
+                targetSchool: "MA Negeri 1 Maluku Tengah",
                 themeColor: "#CCD5AE", // Mint Green
                 avatarGradient: "from-[#9B59B6] to-[#8E44AD]"
             },
@@ -312,6 +516,7 @@
                 futureCareer: "DOSEN BAHASA INGGRIS",
                 futureDesc: "Mendedikasikan diri menyebarkan keindahan literatur bahasa Arab dan nilai keislaman di dunia pendidikan tinggi.",
                 aspiration: "Meraih sukses mandiri dari keringat sendiri demi mewujudkan impian mulia orang tua dan keluarga.",
+                targetSchool: "MAN 1 Maluku Tengah",
                 themeColor: "#90E0EF", // Sky Blue
                 avatarGradient: "from-[#34495E] to-[#2C3E50]"
             },
@@ -329,6 +534,7 @@
                 futureCareer: "Dosen Kesehatan",
                 futureDesc: "Mengeksplorasi penelitian sains modern berbasis alam tropis Indonesia guna merintis inovasi biologi terapan global.",
                 aspiration: "Tangguh menghadapi tantangan, terus belajar tanpa lelah demi membanggakan guru, orang tua, dan sesama.",
+                targetSchool: "MAN 1 Maluku Tengah",
                 themeColor: "#A8DADC", // Periwinkle Blue
                 avatarGradient: "from-[#E74C3C] to-[#962D22]"
             },
@@ -346,6 +552,7 @@
                 futureCareer: "DOKTER SPESIALIS PENYAKIT DALAM",
                 futureDesc: "Mengabdikan segenap talenta medis demi mengukir harapan-harapan baru bagi anak-anak Indonesia yang membutuhkan pertolongan.",
                 aspiration: "Menjadi muslimah berprestasi, sukses, percaya diri, dan bermanfaat bagi banyak orang.",
+                targetSchool: "SMA Negeri 1 Ambon",
                 themeColor: "#BDB2FF", // Royal Lilac
                 avatarGradient: "from-[#117A65] to-[#0E6251]"
             },
@@ -361,6 +568,7 @@
                 futureCareer: "Dokter",
                 futureDesc: "Memimpin perintisan layanan medis inovatif dan mengabdi tanpa pamrih sebagai garda terdepan penyelemat jiwa kemanusiaan.",
                 aspiration: "Menjadi pribadi yang lebih baik, dan terus prestasi, baik dalam akademik maupun non akademik",
+                targetSchool: "SMAN Siwalima Ambon",
                 themeColor: "#FFD166", // Deep Aurora Gold
                 avatarGradient: "from-[#F1C40F] to-[#D4AC0D]"
             }
@@ -425,7 +633,65 @@
         }
 
         function getTargetSchoolPlaceholder(rank) {
-            return `Sekolah Tujuan Peringkat ${rank} (isi nanti)`;
+            const student = studentsData.find((item) => item.rank === rank);
+            return student?.targetSchool || `Sekolah Tujuan Peringkat ${rank} (isi nanti)`;
+        }
+
+        function buildRankBadge(rank, accentColor, options = {}) {
+            const rotation = options.rotation || '-1.5deg';
+            const readableClass = options.readable ? ' rank-badge-readable' : '';
+            const tint = options.tint || `${accentColor}22`;
+            const border = options.border || `${accentColor}55`;
+            const tapeRotation = options.tapeRotation || '2deg';
+            return `
+                <div class="rank-badge-scrapbook${readableClass}" style="--badge-rotation: ${rotation}; --badge-tint: ${tint}; --badge-border: ${border}; --badge-tape-rotation: ${tapeRotation};">
+                    <div class="rank-badge-inner">
+                        <span class="rank-badge-label">Terbaik</span>
+                        <span class="rank-badge-number">
+                            0${rank}
+                            <span class="rank-badge-dot" style="background-color: ${accentColor};"></span>
+                        </span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildNetworkThumbLayer() {
+            const placements = [
+                { top: 18, left: 8 },
+                { top: 36, left: 7 },
+                { top: 54, left: 8 },
+                { top: 72, left: 10 },
+                { top: 20, left: 92 },
+                { top: 38, left: 93 },
+                { top: 56, left: 92 },
+                { top: 74, left: 90 },
+                { top: 87, left: 30 },
+                { top: 87, left: 70 }
+            ];
+
+            const thumbs = studentsOrdered.map((student, idx) => {
+                const point = placements[idx % placements.length];
+                return `
+                    <div class="network-thumb" style="top:${point.top}%; left:${point.left}%; animation-delay:${(idx * 0.28).toFixed(2)}s;">
+                        <img
+                            src="${getPhotoPath(student.rank, 'resmi')}"
+                            alt="Thumbnail ${student.name}"
+                            data-rank="${student.rank}"
+                            data-variant="resmi"
+                            data-tried="resmi"
+                            onerror="fallbackStudentPhoto(this)"
+                        />
+                    </div>
+                `;
+            }).join('');
+
+            return `
+                <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(11,10,18,0.08),rgba(11,10,18,0.5))]"></div>
+                    ${thumbs}
+                </div>
+            `;
         }
 
         function clearAchievementCycle() {
@@ -479,6 +745,29 @@
                 }, 3200);
             }
         }
+
+        function applyUniversalSlideAnimations(viewportEl) {
+            if (!viewportEl) return;
+
+            const selector = [
+                'h1',
+                'h2',
+                'h3',
+                'p',
+                'li',
+                '.photo-wrap',
+                '.washi-tape',
+                '.network-thumb',
+                'div[class*="rounded"]'
+            ].join(',');
+
+            const targets = Array.from(viewportEl.querySelectorAll(selector)).slice(0, 28);
+            targets.forEach((el, index) => {
+                if (el.classList.contains('slide-item-enter')) return;
+                el.classList.add('slide-item-enter');
+                el.style.setProperty('--enter-delay', `${Math.min(index * 0.06, 0.9)}s`);
+            });
+        }
     </script>
 
     <script>
@@ -491,20 +780,20 @@
                 bgColor: '#FAF6EE',
                 render: () => `
                     <div class="h-full flex items-center justify-center px-14 relative overflow-hidden">
-                        <div class="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-[#FFD166]/25 blur-3xl"></div>
-                        <div class="absolute -bottom-24 -right-16 w-96 h-96 rounded-full bg-[#A8DADC]/26 blur-3xl"></div>
-                        <div class="absolute top-20 right-40 w-28 h-28 rounded-full border-2 border-[#E6A18D]/25"></div>
-                        <div class="absolute bottom-16 left-36 w-20 h-20 rounded-full border-2 border-[#A3B19B]/30"></div>
+                        <div class="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-[#FFD166]/25 blur-3xl ornament-float"></div>
+                        <div class="absolute -bottom-24 -right-16 w-96 h-96 rounded-full bg-[#A8DADC]/26 blur-3xl ornament-float" style="animation-delay: 1.1s;"></div>
+                        <div class="absolute top-20 right-40 w-28 h-28 rounded-full border-2 border-[#E6A18D]/25 ornament-float" style="animation-delay: 0.4s;"></div>
+                        <div class="absolute bottom-16 left-36 w-20 h-20 rounded-full border-2 border-[#A3B19B]/30 ornament-float" style="animation-delay: 1.6s;"></div>
 
-                        <div class="w-full max-w-5xl bg-white/68 backdrop-blur-[1.5px] border border-white/80 rounded-[34px] shadow-[0_20px_45px_rgba(0,0,0,0.14)] px-14 py-12 text-center relative">
+                        <div class="w-full max-w-5xl bg-white/68 backdrop-blur-[1.5px] border border-white/80 rounded-[34px] shadow-[0_20px_45px_rgba(0,0,0,0.14)] px-14 py-12 text-center relative content-rise">
                             <div class="absolute top-6 left-6 border-t-2 border-l-2 border-black/20 w-10 h-10"></div>
                             <div class="absolute bottom-6 right-6 border-b-2 border-r-2 border-black/20 w-10 h-10"></div>
 
-                            <span class="font-sans text-base tracking-[0.35em] uppercase text-black/55 font-extrabold mb-5 block">Pelepasan Alumni Kelas 9</span>
-                            <h1 class="font-display-journal text-8xl font-black text-[#2C2A29] mb-4 tracking-tight leading-none">MATAWARU</h1>
-                            <p class="font-serif-journal italic text-[36px] text-black/70 mb-8">"Mandiri, Tangguh, Wawasan Luas, Rendah Hati, Unggul"</p>
+                            <span class="font-sans text-base tracking-[0.35em] uppercase text-black/55 font-extrabold mb-5 block content-rise" style="animation-delay: 0.12s;">Pelepasan Alumni Kelas 9</span>
+                            <h1 class="font-display-journal text-8xl font-black text-[#2C2A29] mb-4 tracking-tight leading-none title-pulse content-rise" style="animation-delay: 0.2s;">MATAWARU</h1>
+                            <p class="font-serif-journal italic text-[36px] text-black/70 mb-8 content-rise" style="animation-delay: 0.3s;">"Mandiri, Tangguh, Wawasan Luas, Rendah Hati, Unggul"</p>
                             <div class="w-28 h-[2px] bg-black/20 mx-auto mb-7"></div>
-                            <p class="max-w-3xl mx-auto text-[15px] leading-relaxed text-black/65 uppercase tracking-[0.22em] font-extrabold">
+                            <p class="max-w-3xl mx-auto text-[15px] leading-relaxed text-black/65 uppercase tracking-[0.22em] font-extrabold content-rise" style="animation-delay: 0.4s;">
                                 Sesi Penganugerahan Kehormatan 10 Besar Lulusan Terbaik Angkatan 2026
                             </p>
                         </div>
@@ -518,22 +807,22 @@
                 bgColor: '#F4EFE6',
                 render: () => `
                     <div class="h-full flex flex-col justify-center px-12 py-2 text-center">
-                        <span class="font-sans text-sm font-extrabold uppercase tracking-[0.32em] text-black/45 mb-2">Arahan Nilai Angkatan</span>
-                        <h2 class="font-display-journal text-6xl font-black mb-4 text-black/90">Misi Jiwa Pemimpin</h2>
-                        <p class="text-sm text-black/60 font-semibold mb-5">Lima nilai inti MATAWARU sebagai arah langkah lulusan.</p>
+                        <span class="font-sans text-sm font-extrabold uppercase tracking-[0.32em] text-black/45 mb-2 content-rise">Arahan Nilai Angkatan</span>
+                        <h2 class="font-display-journal text-6xl font-black mb-4 text-black/90 content-rise" style="animation-delay: 0.12s;">Misi Jiwa Pemimpin</h2>
+                        <p class="text-sm text-black/60 font-semibold mb-5 content-rise" style="animation-delay: 0.2s;">Lima nilai inti MATAWARU sebagai arah langkah lulusan.</p>
 
                         <div class="grid grid-cols-3 gap-4 max-w-5xl mx-auto w-full mb-4">
-                            <div class="bg-white/70 border border-black/10 p-4 rounded-2xl text-left">
+                            <div class="bg-white/70 border border-black/10 p-4 rounded-2xl text-left mission-card-pop" style="animation-delay:0.1s;">
                                 <span class="font-display-journal text-4xl font-black text-[#E6A18D] block">M</span>
                                 <span class="text-sm font-extrabold uppercase tracking-wider block mt-1 mb-1">Mandiri</span>
                                 <p class="text-[12px] leading-snug text-black/65">Berani mengambil keputusan yang tepat dan bertanggung jawab.</p>
                             </div>
-                            <div class="bg-white/70 border border-black/10 p-4 rounded-2xl text-left">
+                            <div class="bg-white/70 border border-black/10 p-4 rounded-2xl text-left mission-card-pop" style="animation-delay:0.2s;">
                                 <span class="font-display-journal text-4xl font-black text-[#D4A373] block">A</span>
                                 <span class="text-sm font-extrabold uppercase tracking-wider block mt-1 mb-1">Tangguh</span>
                                 <p class="text-[12px] leading-snug text-black/65">Kokoh menghadapi tantangan dan perubahan dengan ketekunan.</p>
                             </div>
-                            <div class="bg-white/70 border border-black/10 p-4 rounded-2xl text-left">
+                            <div class="bg-white/70 border border-black/10 p-4 rounded-2xl text-left mission-card-pop" style="animation-delay:0.3s;">
                                 <span class="font-display-journal text-4xl font-black text-[#A3B19B] block">W</span>
                                 <span class="text-sm font-extrabold uppercase tracking-wider block mt-1 mb-1">Wawasan Luas</span>
                                 <p class="text-[12px] leading-snug text-black/65">Terbuka pada ilmu, teknologi, dan pembelajaran sepanjang hayat.</p>
@@ -541,12 +830,12 @@
                         </div>
 
                         <div class="grid grid-cols-2 gap-4 max-w-3xl mx-auto w-full">
-                            <div class="bg-white/70 border border-black/10 p-4 rounded-2xl text-left">
+                            <div class="bg-white/70 border border-black/10 p-4 rounded-2xl text-left mission-card-pop" style="animation-delay:0.4s;">
                                 <span class="font-display-journal text-4xl font-black text-[#A8DADC] block">R</span>
                                 <span class="text-sm font-extrabold uppercase tracking-wider block mt-1 mb-1">Rendah Hati</span>
                                 <p class="text-[12px] leading-snug text-black/65">Berakhlak baik, menghargai sesama, dan siap melayani.</p>
                             </div>
-                            <div class="bg-white/70 border border-black/10 p-4 rounded-2xl text-left">
+                            <div class="bg-white/70 border border-black/10 p-4 rounded-2xl text-left mission-card-pop" style="animation-delay:0.5s;">
                                 <span class="font-display-journal text-4xl font-black text-[#FFD166] block">U</span>
                                 <span class="text-sm font-extrabold uppercase tracking-wider block mt-1 mb-1">Unggul</span>
                                 <p class="text-[12px] leading-snug text-black/65">Terdepan dalam prestasi, karakter, dan kontribusi nyata.</p>
@@ -572,15 +861,11 @@
                     render: () => `
                         <div class="grid grid-cols-12 gap-12 items-center h-full">
                             <div class="col-span-7 flex flex-col justify-center">
-                                <div class="inline-flex items-center gap-3 mb-6">
-                                    <span class="font-sans text-base font-extrabold uppercase tracking-[0.22em] px-4 py-2 bg-black/10 rounded-xl">Peringkat 0${student.rank}</span>
-                                    <span class="w-3 h-3 rounded-full animate-ping" style="background-color: ${accentColor};"></span>
-                                </div>
                                 <h1 class="font-display-journal text-6xl font-extrabold tracking-tight mb-4 leading-none text-black/90 uppercase">${student.name}</h1>
                                 <div class="w-16 h-[2px] bg-black/20 my-6"></div>
                                 <div class="space-y-4">
                                     <div class="bg-white/60 border border-black/10 rounded-2xl p-5 shadow-sm">
-                                        <span class="font-sans text-[10px] font-extrabold uppercase tracking-widest text-black/45 block mb-1">Putra / Putri Kebanggaan Dari</span>
+                                        <span class="font-sans text-[10px] font-extrabold uppercase tracking-widest text-black/45 block mb-1">Anak kebanggaan dari:</span>
                                         <p class="font-serif-journal text-3xl font-bold text-black/85 leading-tight">${student.parents}</p>
                                     </div>
                                     <div class="grid grid-cols-2 gap-3">
@@ -588,14 +873,15 @@
                                             <span class="font-sans text-[10px] font-extrabold uppercase tracking-widest text-black/45 block mb-1">Almamater</span>
                                             <p class="font-sans text-sm font-semibold tracking-wide text-black/70 uppercase">MTs Negeri 1 Maluku Tengah</p>
                                         </div>
-                                        <div class="bg-white/70 border border-black/10 rounded-xl p-4" style="box-shadow: 0 8px 18px rgba(0,0,0,0.08);">
-                                            <span class="font-sans text-[10px] font-extrabold uppercase tracking-widest text-black/45 block mb-1">Sekolah Tujuan</span>
-                                            <p class="font-sans text-sm font-bold tracking-wide text-black/80">${getTargetSchoolPlaceholder(student.rank)}</p>
+                                        <div class="bg-white/75 border border-black/10 rounded-xl p-4" style="box-shadow: 0 8px 18px rgba(0,0,0,0.08);">
+                                            <span class="font-sans text-[10px] font-extrabold uppercase tracking-[0.18em] text-black/45 block mb-1">Sekolah tujuan</span>
+                                            <p class="font-sans text-[16px] font-black tracking-wide text-black/85 leading-tight">${getTargetSchoolPlaceholder(student.rank)}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-span-5 flex justify-center items-center relative">
+                            <div class="col-span-5 flex justify-center items-center relative pb-10">
+                                ${buildRankBadge(student.rank, accentColor, { rotation: '-2.8deg' })}
                                 <div class="washi-tape -top-5 w-32 h-8 left-[15%] rotate-[-6deg]"></div>
                                 ${photoResmi}
                             </div>
@@ -611,16 +897,12 @@
                     render: () => `
                         <div class="grid grid-cols-12 gap-12 items-center h-full">
                             <div class="col-span-7 flex flex-col justify-center">
-                                <span class="inline-flex items-center gap-3 mb-4">
-                                    <span class="font-sans text-base font-extrabold uppercase tracking-[0.22em] px-4 py-2 bg-black/10 rounded-xl">Peringkat 0${student.rank}</span>
-                                    <span class="w-2.5 h-2.5 rounded-full animate-ping" style="background-color: ${accentColor};"></span>
-                                </span>
                                 <span class="font-sans text-xs font-extrabold uppercase tracking-[0.3em] text-black/40 mb-3">Milestone Perjuangan</span>
                                 <h2 class="font-display-journal text-5xl font-bold tracking-tight mb-8">Prestasi Istimewa</h2>
                                 <div class="bg-white/68 border border-black/10 rounded-2xl p-6 shadow-sm min-h-[255px] flex flex-col justify-between">
                                     <div class="flex items-center justify-between mb-4">
                                         <span class="text-[11px] font-extrabold uppercase tracking-[0.2em] text-black/45">Sorotan Prestasi</span>
-                                        <span class="text-[11px] font-bold text-black/45">Item <span class="achievement-rotator-index">1</span>/<span class="achievement-rotator-total">${student.achievements.length}</span></span>
+                                        <span class="text-[11px] font-bold text-black/45">Prestasi <span class="achievement-rotator-index">1</span>/<span class="achievement-rotator-total">${student.achievements.length}</span></span>
                                     </div>
                                     <div class="flex items-start gap-5">
                                         <div class="w-14 h-14 rounded-xl bg-white/85 flex items-center justify-center shrink-0 shadow-sm border border-black/5">
@@ -630,7 +912,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-span-5 flex justify-center items-center relative">
+                            <div class="col-span-5 flex justify-center items-center relative pb-10">
+                                ${buildRankBadge(student.rank, accentColor, { rotation: '2.2deg' })}
                                 <div class="washi-tape -top-5 w-32 h-8 left-[45%] rotate-[3deg]"></div>
                                 ${photoBebas1}
                             </div>
@@ -646,10 +929,6 @@
                     render: () => `
                         <div class="grid grid-cols-12 gap-12 items-center h-full">
                             <div class="col-span-7 flex flex-col justify-center">
-                                <span class="inline-flex items-center gap-3 mb-4">
-                                    <span class="font-sans text-base font-extrabold uppercase tracking-[0.22em] px-4 py-2 bg-black/10 rounded-xl">Peringkat 0${student.rank}</span>
-                                    <span class="w-2.5 h-2.5 rounded-full animate-ping" style="background-color: ${accentColor};"></span>
-                                </span>
                                 <span class="font-sans text-xs font-extrabold uppercase tracking-[0.3em] text-black/40 mb-3">Visi Masa Depan</span>
                                 <h2 class="font-display-journal text-5xl font-bold tracking-tight mb-8">Impian & Langkah Berani</h2>
                                 <div class="space-y-6">
@@ -664,7 +943,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-span-5 flex justify-center items-center relative">
+                            <div class="col-span-5 flex justify-center items-center relative pb-10">
+                                ${buildRankBadge(student.rank, accentColor, { rotation: '-1.6deg' })}
                                 <div class="washi-tape -top-5 w-32 h-8 left-[30%] rotate-[-4deg]"></div>
                                 ${photoBebas2}
                             </div>
@@ -710,20 +990,21 @@
                             const xJ = centerX + radius * Math.cos(angleJ);
                             const yJ = centerY + radius * Math.sin(angleJ);
                             
-                            linesHtml += `<line x1="${xI}" y1="${yI}" x2="${xJ}" y2="${yJ}" stroke="rgba(255,255,255,0.08)" stroke-width="1.2" />`;
+                            linesHtml += `<line class="network-link-line" x1="${xI}" y1="${yI}" x2="${xJ}" y2="${yJ}" stroke="rgba(255,255,255,0.14)" stroke-width="1.2" style="animation-delay:${((i + j) * 0.1).toFixed(2)}s;" />`;
                         }
                     }
 
                     return `
                         <div class="h-full w-full flex flex-col justify-between p-2 relative text-white">
-                            <div class="text-center mt-4">
+                            ${buildNetworkThumbLayer()}
+                            <div class="text-center mt-4 relative z-20 content-rise">
                                 <span class="font-sans text-xs font-extrabold uppercase tracking-[0.35em] text-[#FFD166] block mb-1">Kekuatan Kolektif</span>
                                 <h1 class="font-display-journal text-4xl font-extrabold leading-none uppercase">JEJARING MATAWARU</h1>
                                 <p class="font-serif-journal italic text-sm text-white/50 max-w-lg mx-auto mt-2">"Masing-masing dari kita unik, namun sebagai satu kesatuan rasi bintang, kita berdaya penuh berkontribusi bagi kebaikan komunitas kita."</p>
                             </div>
                             
                             <!-- SVG Rasi Bintang Interaktif -->
-                            <svg class="absolute inset-0 w-full h-full pointer-events-auto" style="z-index: 1;">
+                            <svg class="absolute inset-0 w-full h-full pointer-events-auto" style="z-index: 10;">
                                 <g>
                                     ${linesHtml}
                                 </g>
@@ -736,7 +1017,7 @@
                                 </g>
                             </svg>
                             
-                            <div class="text-center mb-4 text-[10px] text-white/30 uppercase tracking-widest font-semibold z-10 pointer-events-none">
+                            <div class="text-center mb-4 text-[10px] text-white/30 uppercase tracking-widest font-semibold relative z-20 pointer-events-none content-rise" style="animation-delay:0.2s;">
                                 Klik simpul manapun untuk mendalami profil siswa secara instan
                             </div>
                         </div>
@@ -750,18 +1031,20 @@
                 bgColor: '#FAF6EE',
                 render: () => `
                     <div class="h-full flex flex-col justify-center items-center text-center px-16 relative">
+                        <div class="absolute -top-16 -left-12 w-72 h-72 rounded-full bg-[#FFD166]/20 blur-3xl outro-glow"></div>
+                        <div class="absolute -bottom-20 -right-10 w-80 h-80 rounded-full bg-[#A8DADC]/24 blur-3xl outro-glow" style="animation-delay:1.2s;"></div>
                         <div class="absolute top-8 left-8 border-t-2 border-l-2 border-black/20 w-12 h-12"></div>
                         <div class="absolute bottom-8 right-8 border-b-2 border-r-2 border-black/20 w-12 h-12"></div>
                         
-                        <span class="font-sans text-sm tracking-[0.3em] uppercase text-black/40 font-bold mb-4">Misi Selesai</span>
-                        <h1 class="font-display-journal text-6xl font-extrabold text-[#2C2A29] mb-4 uppercase">
+                        <span class="font-sans text-sm tracking-[0.3em] uppercase text-black/40 font-bold mb-4 content-rise">Misi Selesai</span>
+                        <h1 class="font-display-journal text-6xl font-extrabold text-[#2C2A29] mb-4 uppercase title-pulse content-rise" style="animation-delay:0.12s;">
                             TERIMA KASIH
                         </h1>
-                        <p class="font-serif-journal italic text-2xl text-black/60 mb-8 max-w-xl">
+                        <p class="font-serif-journal italic text-2xl text-black/60 mb-8 max-w-xl content-rise" style="animation-delay:0.22s;">
                             "Selamat berjuang di samudera kehidupan baru. Kibarkan setinggi langit jiwa mulia MATAWARU demi kemaslahatan semesta."
                         </p>
                         <div class="w-16 h-[1px] bg-black/20 mb-8"></div>
-                        <p class="text-[10px] uppercase tracking-widest font-extrabold text-black/50">
+                        <p class="text-[10px] uppercase tracking-widest font-extrabold text-black/50 content-rise" style="animation-delay:0.3s;">
                             Madrasah Tsanawiyah Negeri 1 Maluku Tengah
                         </p>
                     </div>
@@ -777,13 +1060,13 @@
             if (slide.type === 'cover') {
                 return `
                     <div class="h-full w-full flex items-center justify-center px-10 relative overflow-hidden">
-                        <div class="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-[#FFD166]/25 blur-3xl"></div>
-                        <div class="absolute -bottom-24 -right-16 w-96 h-96 rounded-full bg-[#A8DADC]/26 blur-3xl"></div>
-                        <div class="w-full max-w-5xl rounded-[32px] border border-white/80 bg-white/70 px-12 py-10 text-center shadow-[0_20px_45px_rgba(0,0,0,0.14)]">
-                            <span class="font-sans text-[21px] font-extrabold uppercase tracking-[0.28em] text-black/60 block mb-3">Pelepasan Siswa Kelas 9</span>
-                            <h1 class="font-display-journal text-[116px] font-black text-[#1F1B18] leading-none mb-4">MATAWARU</h1>
-                            <p class="font-serif-journal italic text-[44px] font-bold text-black/75 mb-4">Mandiri, Tangguh, Wawasan Luas, Rendah Hati, Unggul</p>
-                            <p class="font-sans text-[28px] font-semibold text-black/75">10 Besar Lulusan Terbaik Angkatan 2026</p>
+                        <div class="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-[#FFD166]/25 blur-3xl ornament-float"></div>
+                        <div class="absolute -bottom-24 -right-16 w-96 h-96 rounded-full bg-[#A8DADC]/26 blur-3xl ornament-float" style="animation-delay: 1s;"></div>
+                        <div class="w-full max-w-5xl rounded-[32px] border border-white/80 bg-white/70 px-12 py-10 text-center shadow-[0_20px_45px_rgba(0,0,0,0.14)] content-rise">
+                            <span class="font-sans text-[21px] font-extrabold uppercase tracking-[0.28em] text-black/60 block mb-3 content-rise" style="animation-delay:0.08s;">Pelepasan Siswa Kelas 9</span>
+                            <h1 class="font-display-journal text-[116px] font-black text-[#1F1B18] leading-none mb-4 title-pulse content-rise" style="animation-delay:0.18s;">MATAWARU</h1>
+                            <p class="font-serif-journal italic text-[44px] font-bold text-black/75 mb-4 content-rise" style="animation-delay:0.28s;">Mandiri, Tangguh, Wawasan Luas, Rendah Hati, Unggul</p>
+                            <p class="font-sans text-[28px] font-semibold text-black/75 content-rise" style="animation-delay:0.36s;">10 Besar Lulusan Terbaik Angkatan 2026</p>
                         </div>
                     </div>
                 `;
@@ -792,16 +1075,16 @@
             if (slide.type === 'intro') {
                 return `
                     <div class="h-full w-full flex flex-col justify-center px-12 py-3 text-center">
-                        <h2 class="font-display-journal text-[82px] font-black text-black/90 mb-5">Arahan MATAWARU</h2>
-                        <p class="text-[24px] font-semibold text-black/70 mb-5">Lima kompas karakter yang menuntun langkah angkatan.</p>
+                        <h2 class="font-display-journal text-[82px] font-black text-black/90 mb-5 content-rise">Arahan MATAWARU</h2>
+                        <p class="text-[24px] font-semibold text-black/70 mb-5 content-rise" style="animation-delay:0.1s;">Lima kompas karakter yang menuntun langkah angkatan.</p>
                         <div class="grid grid-cols-3 gap-4 max-w-5xl mx-auto w-full mb-4">
-                            <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88">M - Mandiri</div>
-                            <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88">A - Tangguh</div>
-                            <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88">W - Wawasan Luas</div>
+                            <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88 mission-card-pop" style="animation-delay:0.1s;">M - Mandiri</div>
+                            <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88 mission-card-pop" style="animation-delay:0.2s;">A - Tangguh</div>
+                            <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88 mission-card-pop" style="animation-delay:0.3s;">W - Wawasan Luas</div>
                         </div>
                         <div class="grid grid-cols-2 gap-4 max-w-3xl mx-auto w-full">
-                            <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88">R - Rendah Hati</div>
-                            <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88">U - Unggul</div>
+                            <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88 mission-card-pop" style="animation-delay:0.4s;">R - Rendah Hati</div>
+                            <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88 mission-card-pop" style="animation-delay:0.5s;">U - Unggul</div>
                         </div>
                     </div>
                 `;
@@ -814,20 +1097,24 @@
                 return `
                     <div class="grid grid-cols-12 gap-8 items-center h-full px-4">
                         <div class="col-span-8">
-                            <span class="inline-block text-[38px] font-extrabold uppercase tracking-wide bg-black/10 rounded-xl px-5 py-2 mb-5">Peringkat 0${student.rank}</span>
                             <h1 class="font-display-journal text-[88px] font-black leading-[0.95] text-black/90 uppercase mb-6">${student.name}</h1>
                             <div class="grid grid-cols-1 gap-3">
                                 <div class="bg-white/75 border border-black/10 rounded-2xl px-7 py-5">
+                                    <p class="text-[18px] font-extrabold uppercase tracking-[0.14em] text-black/50 mb-2">Anak kebanggaan dari:</p>
                                     <p class="text-[45px] font-semibold text-black/85">${student.parents}</p>
                                 </div>
                                 
                                     <div class="bg-white/80 border border-black/10 rounded-xl px-5 py-4">
-                                        <p class="text-[25px] font-bold text-black/85">${getTargetSchoolPlaceholder(student.rank)}</p>
+                                        <p class="text-[17px] font-extrabold uppercase tracking-[0.16em] text-black/50 mb-1">Sekolah tujuan</p>
+                                        <p class="text-[30px] font-black text-black/85 leading-tight">${getTargetSchoolPlaceholder(student.rank)}</p>
                                     </div>
                             
                             </div>
                         </div>
-                        <div class="col-span-4 flex justify-center">${photo}</div>
+                        <div class="col-span-4 flex justify-center relative pb-12">
+                            ${buildRankBadge(student.rank, accentColor, { readable: true, rotation: '-2deg' })}
+                            ${photo}
+                        </div>
                     </div>
                 `;
             }
@@ -839,7 +1126,6 @@
                 return `
                     <div class="grid grid-cols-12 gap-8 items-center h-full px-4">
                         <div class="col-span-8">
-                            <span class="inline-block text-[34px] font-extrabold uppercase tracking-wide bg-black/10 rounded-xl px-5 py-2 mb-4">Peringkat 0${student.rank}</span>
                             <h2 class="font-display-journal text-[74px] font-black text-black/90 leading-none mb-4">Prestasi Utama</h2>
                             <p class="text-[36px] font-extrabold text-black/85 uppercase mb-6">${student.name}</p>
                             <div class="bg-white/78 border border-black/10 rounded-2xl px-8 py-7 min-h-[230px] flex flex-col justify-between">
@@ -855,7 +1141,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-span-4 flex justify-center">${photo}</div>
+                        <div class="col-span-4 flex justify-center relative pb-12">
+                            ${buildRankBadge(student.rank, accentColor, { readable: true, rotation: '2deg' })}
+                            ${photo}
+                        </div>
                     </div>
                 `;
             }
@@ -867,7 +1156,6 @@
                 return `
                     <div class="grid grid-cols-12 gap-8 items-center h-full px-4">
                         <div class="col-span-8">
-                            <span class="inline-block text-[34px] font-extrabold uppercase tracking-wide bg-black/10 rounded-xl px-5 py-2 mb-4">Peringkat 0${student.rank}</span>
                             <h2 class="font-display-journal text-[72px] font-black text-black/90 leading-none mb-4">Impian & Karir</h2>
                             <p class="text-[34px] font-extrabold text-black/85 uppercase mb-5">${student.name}</p>
                             <div class="bg-white/78 border border-black/10 rounded-2xl px-7 py-5 mb-4">
@@ -877,26 +1165,34 @@
                                 <p class="text-[27px] font-semibold italic text-black/80 leading-tight">"${student.aspiration}"</p>
                             </div>
                         </div>
-                        <div class="col-span-4 flex justify-center">${photo}</div>
+                        <div class="col-span-4 flex justify-center relative pb-12">
+                            ${buildRankBadge(student.rank, accentColor, { readable: true, rotation: '-1.4deg' })}
+                            ${photo}
+                        </div>
                     </div>
                 `;
             }
 
             if (slide.type === 'networking') {
                 return `
-                    <div class="h-full w-full flex flex-col justify-center items-center text-center px-12 text-white">
-                        <h1 class="font-display-journal text-[90px] font-black leading-none mb-6">JEJARING MATAWARU</h1>
-                        <p class="text-[44px] font-bold text-white/90 mb-4">10 Siswa Berprestasi</p>
-                        <p class="text-[30px] font-semibold text-white/75">Satu Angkatan, Satu Semangat, Satu Masa Depan</p>
+                    <div class="h-full w-full flex flex-col justify-center items-center text-center px-12 text-white relative overflow-hidden">
+                        ${buildNetworkThumbLayer()}
+                        <div class="relative z-20 bg-black/30 border border-white/15 rounded-3xl px-12 py-10 backdrop-blur-[1.5px] content-rise">
+                            <h1 class="font-display-journal text-[90px] font-black leading-none mb-6 title-pulse">JEJARING MATAWARU</h1>
+                            <p class="text-[44px] font-bold text-white/90 mb-4">10 Siswa Berprestasi</p>
+                            <p class="text-[30px] font-semibold text-white/75">Satu Angkatan, Satu Semangat, Satu Masa Depan</p>
+                        </div>
                     </div>
                 `;
             }
 
             if (slide.type === 'outro') {
                 return `
-                    <div class="h-full w-full flex flex-col justify-center items-center text-center px-12">
-                        <h1 class="font-display-journal text-[116px] font-black text-[#2C2A29] leading-none mb-7 uppercase">Terima Kasih</h1>
-                        <p class="text-[40px] font-semibold text-black/80 max-w-5xl leading-tight">
+                    <div class="h-full w-full flex flex-col justify-center items-center text-center px-12 relative overflow-hidden">
+                        <div class="absolute -top-12 left-14 w-56 h-56 rounded-full bg-[#FFD166]/24 blur-3xl outro-glow"></div>
+                        <div class="absolute -bottom-16 right-10 w-64 h-64 rounded-full bg-[#A8DADC]/24 blur-3xl outro-glow" style="animation-delay:1.2s;"></div>
+                        <h1 class="font-display-journal text-[116px] font-black text-[#2C2A29] leading-none mb-7 uppercase title-pulse content-rise">Terima Kasih</h1>
+                        <p class="text-[40px] font-semibold text-black/80 max-w-5xl leading-tight content-rise" style="animation-delay:0.12s;">
                             Selamat melangkah ke masa depan. Jadilah generasi yang unggul, tangguh, dan membanggakan.
                         </p>
                     </div>
@@ -1026,6 +1322,7 @@
                 if (box) box.classList.add('slide-fade-active');
             }, 50);
 
+            applyUniversalSlideAnimations(viewport);
             initAchievementTicker(slide, viewport);
 
             if (counter) {
