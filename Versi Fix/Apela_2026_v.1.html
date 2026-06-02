@@ -388,323 +388,6 @@
             font-size: 52px;
         }
 
-        @keyframes suspenseSweep {
-            0% { transform: translateX(-130%) rotate(-12deg); opacity: 0; }
-            20% { opacity: 0.22; }
-            65% { opacity: 0.38; }
-            100% { transform: translateX(135%) rotate(-12deg); opacity: 0; }
-        }
-
-        @keyframes celebratePop {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.07); }
-        }
-
-        @keyframes sparkFloat {
-            0%, 100% { transform: translateY(0) scale(1); opacity: 0.28; }
-            50% { transform: translateY(-12px) scale(1.15); opacity: 0.65; }
-        }
-
-        @keyframes introSceneInOut {
-            0% { opacity: 0; transform: translateY(20px) scale(0.985); }
-            9% { opacity: 1; transform: translateY(0) scale(1); }
-            91% { opacity: 1; transform: translateY(0) scale(1); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        @keyframes introBeamSweep {
-            0%, 100% { opacity: 0.16; transform: translateY(0) skewY(-7deg); }
-            50% { opacity: 0.34; transform: translateY(-16px) skewY(-7deg); }
-        }
-
-        @keyframes introRingPulse {
-            0% { transform: translate(-50%, -50%) scale(0.55); opacity: 0; }
-            18% { transform: translate(-50%, -50%) scale(0.98); opacity: 0.26; }
-            55% { transform: translate(-50%, -50%) scale(1.22); opacity: 0.14; }
-            100% { transform: translate(-50%, -50%) scale(1.42); opacity: 0; }
-        }
-
-        @keyframes introRankCenterToTop {
-            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
-            13% { opacity: 1; transform: translate(-50%, -50%) scale(1.32); }
-            36% { opacity: 1; transform: translate(-50%, -50%) scale(1.04); }
-            58% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-            74% { opacity: 1; transform: translate(-50%, -44vh) scale(0.52); }
-            100% { opacity: 0; transform: translate(-50%, -44vh) scale(0.52); }
-        }
-
-        @keyframes introTopRankReveal {
-            0%, 62% { opacity: 0; transform: translate(-50%, -18px) scale(0.82); }
-            80%, 100% { opacity: 1; transform: translate(-50%, 0) scale(1); }
-        }
-
-        @keyframes introPhotoReveal {
-            0%, 62% { opacity: 0; transform: translateX(-96px) scale(0.9) rotate(-2deg); filter: blur(4px); }
-            80%, 100% { opacity: 1; transform: translateX(0) scale(1) rotate(0deg); filter: blur(0); }
-        }
-
-        @keyframes introNameHeroReveal {
-            0%, 72% { opacity: 0; transform: translateX(78px) scale(0.95); filter: blur(6px); }
-            88%, 100% { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
-        }
-
-        @keyframes introSparkOrbit {
-            0%, 100% { transform: translateY(0) scale(1); opacity: 0.28; }
-            50% { transform: translateY(-16px) scale(1.2); opacity: 0.6; }
-        }
-
-        .student-intro-stage {
-            --intro-accent: #ffd166;
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            animation: introSceneInOut 7.4s cubic-bezier(0.22, 0.7, 0.2, 1) both;
-        }
-
-        .student-intro-backdrop {
-            position: absolute;
-            inset: -8% -5% 0;
-            background:
-                radial-gradient(circle at 50% 20%, rgba(255,255,255,0.8), rgba(255,255,255,0) 52%),
-                radial-gradient(circle at 50% 86%, color-mix(in srgb, var(--intro-accent) 28%, transparent), rgba(255,255,255,0) 64%),
-                linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
-            pointer-events: none;
-        }
-
-        .student-intro-beam {
-            position: absolute;
-            top: -18%;
-            width: 30%;
-            height: 144%;
-            background: linear-gradient(180deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
-            filter: blur(1px);
-            opacity: 0.22;
-            transform: skewY(-7deg);
-            animation: introBeamSweep 6.2s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        .student-intro-beam-left {
-            left: 16%;
-            animation-delay: 0.2s;
-        }
-
-        .student-intro-beam-right {
-            right: 14%;
-            animation-delay: 1.1s;
-        }
-
-        .student-intro-rank-seq {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            z-index: 24;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            animation: introRankCenterToTop 7.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-        }
-
-        .student-intro-rank-seq::before,
-        .student-intro-rank-seq::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            width: min(62vw, 560px);
-            aspect-ratio: 1;
-            border-radius: 999px;
-            border: 2px solid color-mix(in srgb, var(--intro-accent) 36%, rgba(255,255,255,0.55));
-            animation: introRingPulse 2.7s ease-out infinite;
-            pointer-events: none;
-        }
-
-        .student-intro-rank-seq::after {
-            animation-delay: 1.15s;
-        }
-
-        .student-intro-rank-label {
-            font-family: var(--font-serif);
-            font-size: clamp(30px, 4.3vw, 56px);
-            font-weight: 700;
-            letter-spacing: 0.26em;
-            text-transform: uppercase;
-            color: rgba(28,27,25,0.82);
-            line-height: 1;
-            margin-bottom: 10px;
-            text-shadow: 0 4px 14px rgba(255,255,255,0.5);
-        }
-
-        .student-intro-rank-number {
-            font-family: var(--font-display);
-            font-size: clamp(190px, 23vw, 360px);
-            line-height: 0.84;
-            font-weight: 900;
-            letter-spacing: 0.04em;
-            color: rgba(28,27,25,0.96);
-            text-shadow: 0 10px 34px rgba(0,0,0,0.2), 0 0 32px color-mix(in srgb, var(--intro-accent) 28%, transparent);
-            animation: celebratePop 3s ease-in-out infinite;
-        }
-
-        .student-intro-rank-top-fixed {
-            position: absolute;
-            left: 50%;
-            top: 10px;
-            z-index: 26;
-            transform: translateX(-50%);
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-            padding: 8px 16px 10px;
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.52);
-            background: linear-gradient(160deg, rgba(255,255,255,0.9), rgba(248,243,234,0.64));
-            backdrop-filter: blur(4px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-            opacity: 0;
-            animation: introTopRankReveal 7.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-        }
-
-        .student-intro-rank-top-fixed .student-intro-rank-label {
-            margin-bottom: 0;
-            font-size: 12px;
-            letter-spacing: 0.22em;
-            text-shadow: none;
-        }
-
-        .student-intro-rank-top-fixed .student-intro-rank-number {
-            font-size: 44px;
-            line-height: 0.9;
-            text-shadow: none;
-            animation: none;
-        }
-
-        .student-intro-main {
-            position: relative;
-            z-index: 10;
-            height: 100%;
-            padding: 78px 34px 20px;
-            display: grid;
-            grid-template-columns: minmax(280px, 390px) minmax(0, 1fr);
-            align-items: center;
-            column-gap: clamp(22px, 5vw, 74px);
-        }
-
-        .student-intro-photo-wrap {
-            position: relative;
-            width: min(42vw, 400px);
-            height: min(62vh, 500px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            animation: introPhotoReveal 7.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-        }
-
-        .student-intro-photo-glow {
-            position: absolute;
-            inset: 0;
-            border-radius: 32px;
-            filter: blur(24px);
-            opacity: 0.42;
-            animation: backdropPulse 6.5s ease-in-out infinite;
-        }
-
-        .student-intro-photo-frame {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            border-radius: 32px;
-            overflow: hidden;
-            border: 2px solid rgba(255,255,255,0.58);
-            background: linear-gradient(160deg, rgba(22,22,28,0.95), rgba(45,45,52,0.88));
-            box-shadow: 0 22px 42px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.15);
-        }
-
-        .student-intro-photo-frame::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(120deg, transparent 26%, rgba(255,255,255,0.24) 50%, transparent 74%);
-            transform: translateX(-130%);
-            animation: suspenseSweep 5.8s linear infinite;
-            pointer-events: none;
-        }
-
-        .student-intro-photo-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            transform: scale(1.03);
-        }
-
-        .student-intro-name-tag {
-            position: relative;
-            z-index: 14;
-            width: 100%;
-            max-width: min(100%, 760px);
-            text-align: left;
-            font-family: var(--font-display);
-            font-size: clamp(38px, 6.2vw, 112px);
-            line-height: 0.9;
-            font-weight: 900;
-            letter-spacing: 0.03em;
-            color: rgba(30,29,27,0.95);
-            text-transform: uppercase;
-            text-wrap: balance;
-            overflow-wrap: break-word;
-            text-shadow: 0 12px 30px rgba(255,255,255,0.36), 0 20px 46px rgba(0,0,0,0.17);
-            opacity: 0;
-            animation: introNameHeroReveal 7.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-        }
-
-        .student-intro-name-tag::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -18px;
-            width: min(240px, 42%);
-            height: 6px;
-            border-radius: 999px;
-            background: linear-gradient(90deg, color-mix(in srgb, var(--intro-accent) 56%, #ffffff), rgba(255,255,255,0));
-            opacity: 0.72;
-        }
-
-        .student-intro-spark {
-            position: absolute;
-            width: 14px;
-            height: 14px;
-            border-radius: 999px;
-            box-shadow: 0 0 0 5px rgba(255,255,255,0.16);
-            animation: introSparkOrbit 3.2s ease-in-out infinite;
-            opacity: 0.45;
-            pointer-events: none;
-        }
-
-        @media (max-width: 1100px) {
-            .student-intro-main {
-                grid-template-columns: 1fr;
-                justify-items: center;
-                row-gap: 24px;
-                padding-top: 96px;
-            }
-
-            .student-intro-name-tag {
-                text-align: center;
-                max-width: 100%;
-                font-size: clamp(42px, 9.4vw, 92px);
-            }
-
-            .student-intro-name-tag::after {
-                left: 50%;
-                transform: translateX(-50%);
-                width: 200px;
-            }
-        }
-
         .pulse-node {
             animation: pulseGlow 3s infinite ease-in-out;
         }
@@ -949,25 +632,6 @@
             `;
         }
 
-        function buildStudentIntroPhoto(rank, accentColor) {
-            return `
-                <div class="student-intro-photo-wrap">
-                    <div class="student-intro-photo-glow" style="background: radial-gradient(circle, ${accentColor} 0%, transparent 72%);"></div>
-                    <div class="student-intro-photo-frame">
-                        <img
-                            src="${getPhotoPath(rank, 'resmi')}"
-                            alt="Foto resmi siswa peringkat ${rank}"
-                            class="student-intro-photo-img"
-                            data-rank="${rank}"
-                            data-variant="resmi"
-                            data-tried="resmi"
-                            onerror="fallbackStudentPhoto(this)"
-                        />
-                    </div>
-                </div>
-            `;
-        }
-
         function getTargetSchoolPlaceholder(rank) {
             const student = studentsData.find((item) => item.rank === rank);
             return student?.targetSchool || `Sekolah Tujuan Peringkat ${rank} (isi nanti)`;
@@ -1181,51 +845,13 @@
                 `
             });
 
-            // Slide siswa: 10 Siswa (Masing-masing 4 slide)
+            // Slide 3 s.d 32: 10 Siswa (Masing-masing 3 slide)
             studentsOrdered.forEach(student => {
                 const accentColor = student.themeColor;
 
                 const photoResmi = buildStudentPhoto(student.rank, 'resmi', 'Foto Resmi', accentColor);
                 const photoBebas1 = buildStudentPhoto(student.rank, 'bebas1', 'Momen Prestasi', accentColor);
                 const photoBebas2 = buildStudentPhoto(student.rank, 'bebas2', 'Momen Karir', accentColor);
-
-                // Slide A0: Pengantar Siswa (Wow/Suspense)
-                slides.push({
-                    type: 'student-intro',
-                    student: student,
-                    bgColor: student.themeColor,
-                    render: () => `
-                        <div class="h-full relative overflow-hidden px-8 py-3">
-                            <div class="student-intro-stage" style="--intro-accent:${accentColor};">
-                                <div class="student-intro-backdrop"></div>
-                                <div class="student-intro-beam student-intro-beam-left"></div>
-                                <div class="student-intro-beam student-intro-beam-right"></div>
-
-                                <div class="student-intro-rank-seq">
-                                    <span class="student-intro-rank-label">Terbaik</span>
-                                    <span class="student-intro-rank-number">0${student.rank}</span>
-                                </div>
-
-                                <div class="student-intro-rank-top-fixed">
-                                    <span class="student-intro-rank-label">Terbaik</span>
-                                    <span class="student-intro-rank-number">0${student.rank}</span>
-                                </div>
-
-                                <span class="student-intro-spark" style="left:14%; top:22%; background:${accentColor}; animation-delay:0.1s;"></span>
-                                <span class="student-intro-spark" style="left:21%; top:34%; background:${accentColor}; animation-delay:0.7s;"></span>
-                                <span class="student-intro-spark" style="left:82%; top:21%; background:${accentColor}; animation-delay:0.3s;"></span>
-                                <span class="student-intro-spark" style="left:76%; top:35%; background:${accentColor}; animation-delay:1s;"></span>
-                                <span class="student-intro-spark" style="left:26%; top:66%; background:${accentColor}; animation-delay:0.45s;"></span>
-                                <span class="student-intro-spark" style="left:73%; top:68%; background:${accentColor}; animation-delay:1.2s;"></span>
-
-                                <div class="student-intro-main">
-                                    ${buildStudentIntroPhoto(student.rank, accentColor)}
-                                    <div class="student-intro-name-tag">${student.name}</div>
-                                </div>
-                            </div>
-                        </div>
-                    `
-                });
 
                 // Slide A: Identitas Siswa & Orang Tua
                 slides.push({
@@ -1344,7 +970,7 @@
                         
                         return `
                             <!-- Titik Siswa -->
-                            <g class="cursor-pointer" onclick="window.opener ? window.opener.jumpToSlide(${2 + (idx * 4)}) : jumpToSlide(${2 + (idx * 4)})">
+                            <g class="cursor-pointer" onclick="window.opener ? window.opener.jumpToSlide(${2 + (idx * 3)}) : jumpToSlide(${2 + (idx * 3)})">
                                 <circle cx="${x}" cy="${y}" r="22" fill="#181622" stroke="${st.themeColor}" stroke-width="4" class="pulse-node" style="--glow-color: ${st.themeColor};" />
                                 <text x="${x}" y="${y + 5}" fill="#ffffff" font-family="var(--font-sans)" font-size="12" font-weight="800" text-anchor="middle">${st.rank}</text>
                                 <text x="${x}" y="${y + 38}" fill="#ffffff" font-family="var(--font-sans)" font-size="9" font-weight="700" text-anchor="middle" opacity="0.75" class="uppercase tracking-wider">${st.name.split(' ')[0]}</text>
@@ -1459,42 +1085,6 @@
                         <div class="grid grid-cols-2 gap-4 max-w-3xl mx-auto w-full">
                             <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88 mission-card-pop" style="animation-delay:0.4s;">R - Rendah Hati</div>
                             <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88 mission-card-pop" style="animation-delay:0.5s;">U - Unggul</div>
-                        </div>
-                    </div>
-                `;
-            }
-
-            if (slide.type === 'student-intro' && slide.student) {
-                const student = slide.student;
-                const accentColor = student.themeColor;
-                return `
-                    <div class="h-full relative overflow-hidden px-8 py-3">
-                        <div class="student-intro-stage" style="--intro-accent:${accentColor};">
-                            <div class="student-intro-backdrop"></div>
-                            <div class="student-intro-beam student-intro-beam-left"></div>
-                            <div class="student-intro-beam student-intro-beam-right"></div>
-
-                            <div class="student-intro-rank-seq">
-                                <span class="student-intro-rank-label">Terbaik</span>
-                                <span class="student-intro-rank-number">0${student.rank}</span>
-                            </div>
-
-                            <div class="student-intro-rank-top-fixed">
-                                <span class="student-intro-rank-label">Terbaik</span>
-                                <span class="student-intro-rank-number">0${student.rank}</span>
-                            </div>
-
-                            <span class="student-intro-spark" style="left:14%; top:22%; background:${accentColor}; animation-delay:0.1s;"></span>
-                            <span class="student-intro-spark" style="left:21%; top:34%; background:${accentColor}; animation-delay:0.7s;"></span>
-                            <span class="student-intro-spark" style="left:82%; top:21%; background:${accentColor}; animation-delay:0.3s;"></span>
-                            <span class="student-intro-spark" style="left:76%; top:35%; background:${accentColor}; animation-delay:1s;"></span>
-                            <span class="student-intro-spark" style="left:26%; top:66%; background:${accentColor}; animation-delay:0.45s;"></span>
-                            <span class="student-intro-spark" style="left:73%; top:68%; background:${accentColor}; animation-delay:1.2s;"></span>
-
-                            <div class="student-intro-main">
-                                ${buildStudentIntroPhoto(student.rank, accentColor)}
-                                <div class="student-intro-name-tag">${student.name}</div>
-                            </div>
                         </div>
                     </div>
                 `;
@@ -1822,7 +1412,7 @@
                         <!-- Autoplay Adaptif (Loop Slide 3 - 32) -->
                         <div class="bg-white/5 border border-white/10 rounded-xl p-5 flex flex-col justify-between">
                             <div>
-                                <span class="text-[10px] text-white/40 uppercase tracking-widest block font-bold">Autoplay Loop (Semua Slide Siswa)</span>
+                                <span class="text-[10px] text-white/40 uppercase tracking-widest block font-bold">Autoplay Loop (S3 - S32)</span>
                                 <button id="autoplay-btn" onclick="toggleAutoPlay()" class="w-full h-11 mt-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-bold text-xs flex items-center justify-center gap-2 active:scale-95 transition-all">
                                     <i class="fa-solid fa-play"></i> AKTIFKAN AUTOPLAY
                                 </button>
@@ -1836,7 +1426,7 @@
                                 </div>
                             </div>
                             <div class="text-[9px] text-white/40 leading-relaxed mt-1">
-                                <i class="fa-solid fa-clock-rotate-left mr-1"></i> Waktu Baca: Intro Siswa (5d), Identitas (6d), Prestasi (otomatis dinamis), Harapan (8d).
+                                <i class="fa-solid fa-clock-rotate-left mr-1"></i> Waktu Baca: Identitas (6d), Prestasi (otomatis dinamis), Harapan (8d).
                             </div>
                         </div>
                     </div>
@@ -1946,10 +1536,8 @@
                 btn.innerHTML = `<span>R0${student.rank}</span> <span class="text-white/20">|</span> <span class="text-white font-medium truncate max-w-[100px]">${student.name.split(' ')[0]}</span>`;
                 
                 // Menghitung indeks awal slide siswa (setelah Cover & Intro)
-                const studentIndexInSlides = slides.findIndex(
-                    s => s.type === 'student-intro' && s.student && s.student.rank === student.rank
-                );
-                btn.onclick = () => jumpToSlide(studentIndexInSlides >= 0 ? studentIndexInSlides : 2);
+                const studentIndexInSlides = 2 + (10 - student.rank) * 3;
+                btn.onclick = () => jumpToSlide(studentIndexInSlides);
                 quickLinks.appendChild(btn);
             });
 
@@ -1962,9 +1550,7 @@
                 let title = "Sampul";
                 let badge = `S-${i+1}`;
                 
-                if (slide.type === 'student-intro') {
-                    title = `R${slide.student.rank} Intro`;
-                } else if (slide.type === 'student-identity') {
+                if (slide.type === 'student-identity') {
                     title = `R${slide.student.rank} Profil`;
                 } else if (slide.type === 'student-achievements') {
                     title = `R${slide.student.rank} Prestasi`;
@@ -2013,11 +1599,7 @@
                 typeEl.innerText = "Intro";
             } else if (slide.type.startsWith('student-')) {
                 titleEl.innerText = slide.student.name;
-                const stage = slide.type === 'student-intro'
-                    ? 'Pengantar Siswa'
-                    : (slide.type === 'student-identity'
-                        ? 'Profil & Ortu'
-                        : (slide.type === 'student-achievements' ? 'Awan Prestasi' : 'Cita-Cita & Harapan'));
+                const stage = slide.type === 'student-identity' ? 'Profil & Ortu' : (slide.type === 'student-achievements' ? 'Awan Prestasi' : 'Cita-Cita & Harapan');
                 descEl.innerText = `Menampilkan ${stage} dari nominasi terbaik Peringkat 0${slide.student.rank}.`;
                 typeEl.innerText = `S-${slide.student.rank}`;
             } else if (slide.type === 'networking') {
@@ -2053,7 +1635,6 @@
             if (slide.type === 'cover' || slide.type === 'intro' || slide.type === 'networking' || slide.type === 'outro') {
                 return 8; 
             }
-            if (slide.type === 'student-intro') return 8; // Urutan rank besar -> top center -> foto kiri -> nama kanan
             if (slide.type === 'student-identity') return 6; // Pengenalan nama & ortu: 6d
             if (slide.type === 'student-achievements') {
                 const achievementCount = slide.student?.achievements?.length || 1;
@@ -2126,19 +1707,9 @@
         function advanceSlideAuto() {
             if (!isAutoPlay) return;
 
-            const firstStudentIndex = slides.findIndex(s => s.type && s.type.startsWith('student-'));
-            const lastStudentIndex = (() => {
-                for (let i = slides.length - 1; i >= 0; i--) {
-                    if (slides[i].type && slides[i].type.startsWith('student-')) return i;
-                }
-                return firstStudentIndex;
-            })();
-
-            if (firstStudentIndex < 0 || lastStudentIndex < 0) return;
-
-            // Loop Autoplay dikunci pada semua slide siswa.
-            if (currentSlideIndex < firstStudentIndex || currentSlideIndex >= lastStudentIndex) {
-                currentSlideIndex = firstStudentIndex;
+            // Loop Autoplay dikunci dari Slide 3 (Indeks 2) s.d Slide 32 (Indeks 31)
+            if (currentSlideIndex < 2 || currentSlideIndex >= 31) {
+                currentSlideIndex = 2; // Kembali ke profil pertama
             } else {
                 currentSlideIndex++;
             }
