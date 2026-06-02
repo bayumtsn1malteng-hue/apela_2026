@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATAWARU - Pelepasan Siswa Kelas 9</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cormorant Garamond (Scrapbook Serif) & Plus Jakarta Sans (Clean Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-display: 'Playfair Display', serif;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            --paper-color: #FAF6EE;
+            --ink-dark: #2C2A29;
+            --accent-terracotta: #E6A18D;
+            --accent-peach: #F3D1C1;
+            --accent-mustard: #D4A373;
+            --accent-olive: #E9D8A6;
+            --accent-sage: #A3B19B;
+            --accent-mint: #CCD5AE;
+            --accent-sky: #90E0EF;
+            --accent-periwinkle: #A8DADC;
+            --accent-lilac: #BDB2FF;
+            --accent-gold: #FFD166;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: #0d0d11;
+            color: var(--ink-dark);
+            overflow-x: hidden;
+        }
+
+        .font-serif-journal {
+            font-family: var(--font-serif);
+        }
+
+        .font-display-journal {
+            font-family: var(--font-display);
+        }
+
+        /* Tekstur Kertas Scrapbook */
+        .paper-texture {
+            background-color: var(--paper-color);
+            background-image: 
+                radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0),
+                radial-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 0);
+            background-size: 24px 24px;
+            background-position: 0 0, 12px 12px;
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Bingkai Polaroid Khas */
+        .polaroid-frame {
+            background: #ffffff;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            transform: rotate(-1.5deg);
+            transition: all 0.5s ease-in-out;
+        }
+
+        .polaroid-frame:hover {
+            transform: rotate(1deg) scale(1.02);
+        }
+
+        /* Efek Plester / Tape Scrapbook */
+        .washi-tape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(2px);
+            border-left: 3px dashed rgba(0, 0, 0, 0.05);
+            border-right: 3px dashed rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            transform: rotate(-4deg);
+        }
+
+        /* Transisi Slide Halus */
+        .slide-fade-enter {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .slide-fade-active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Desain Scrollbar Tersembunyi */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Grid Animasi Rasi Bintang */
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 12px var(--glow-color)); }
+        }
+
+        .pulse-node {
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+
+    <div id="app-root" class="w-full h-full flex items-center justify-center">
+        <!-- Disuntikkan secara dinamis berdasarkan parameter URL '?mode=presentation' -->
+    </div>
+
+    <script>
+        const studentsData = [
+            {
+                rank: 10,
+                name: "SYIFA AULIA",
+                parents: "Bapak La Jaharudin & Ibu Hadjijah Idrus",
+                achievements: [
+                    "Medali Perak Olimpiade Wawasan Keagamaan Nasional Online 2026",
+                    "Medali Perunggu Olimpiade Keagamaan Nasional Online 2026",
+                    "Juara 3 Lomba Baca Puisi Tingkat Madrasah 2025",
+                    "Juara Harapan 1 Lomba Baca Puisi Aksioma 2024",
+                    "Finalis Nasional Olimpiade Keagamaan Online 2026"
+                ],
+                futureCareer: "Dosen / Sekretaris CEO",
+                futureDesc: "Menggabungkan kepemimpinan manajerial tingkat tinggi dengan dedikasi akademis untuk melahirkan generasi penerus bangsa yang unggul.",
+                aspiration: "Melangkah mantap ke jenjang luhur, menembus universitas impian, dan mewujudkan potensi terbaik diri.",
+                themeColor: "#E6A18D", // Terracotta
+                avatarGradient: "from-[#F39C12] to-[#D35400]"
+            },
+            {
+                rank: 9,
+                name: "MUHAMMAD FADILAH SIDIQ",
+                parents: "Bapak Eko Apri Karyanto & Ibu Yuni Yuvika",
+                achievements: [
+                    "Juara 1 Kualifikasi & Eliminasi Rektor Cup Universitas PGRI Palembang 2024-2025",
+                    "Juara 1 Kualifikasi KEJURPROV Sirkuit 1 Panahan Sumatera Selatan 2024",
+                    "Juara 1 Kualifikasi PAC 1st Half Archery Youth League 2024",
+                    "Juara 3 Beregu (Archery) PORPROV SUMSEL XIV Lahat 2023",
+                    "Ranking 2 Akademik Kelas 9 Semester Ganjil MTsN 1 Maluku Tengah"
+                ],
+                futureCareer: "Abdi Negara / Konten Kreator",
+                futureDesc: "Menjadi benteng pertahanan negara yang berdedikasi tinggi sekaligus menyebarkan inspirasi positif secara global melalui media kreatif digital.",
+                aspiration: "Menjadi versi diri terbaik yang membawa manfaat nyata bagi orang tua, sesama, dan lingkungan.",
+                themeColor: "#F3D1C1", // Muted Peach
+                avatarGradient: "from-[#E67E22] to-[#C0392B]"
+            },
+            {
+                rank: 8,
+                name: "AISYAH SAENAL",
+                parents: "Bapak Saenal Hanaping & Ibu Atika Mustapa",
+                achievements: [
+                    "Finalis Olimpiade PAI Tingkat Provinsi",
+                    "Peserta Kompetisi Sains Madrasah (KSM) Bidang Olimpiade PAI",
+                    "Peserta Olimpiade OMI Tingkat Kabupaten"
+                ],
+                futureCareer: "Dokter Spasialis",
+                futureDesc: "Mengabdikan diri seutuhnya di dunia medis demi memberikan pelayanan kesehatan inklusif dan berkualitas bagi seluruh lapisan masyarakat.",
+                aspiration: "Membangun kesuksesan sejati yang menjadi jalan maslahat dan penyembuh bagi dunia.",
+                themeColor: "#D4A373", // Soft Mustard
+                avatarGradient: "from-[#1ABC9C] to-[#16A085]"
+            },
+            {
+                rank: 7,
+                name: "KURNIA RAHAYU JAILAN",
+                parents: "Bapak Khalid Ariyas Jailan & Ibu Nursin La Ute",
+                achievements: [
+                    "Juara 2 Olimpiade Biologi Online OSR 2026",
+                    "Juara 3 Olimpiade Bahasa Inggris Online OSR 2026",
+                    "Finalis Olimpiade Biologi UNPATTI 2026",
+                    "Finalis Olimpiade Keagamaan PAI Tingkat Regional"
+                ],
+                futureCareer: "Dokter Gigi Profesional",
+                futureDesc: "Menyebarkan senyum sehat ke penjuru daerah melalui kompetensi medis kedokteran gigi modern yang tulus dan mengayomi.",
+                aspiration: "Melangkah berani demi cita-cita, membahagiakan orang tua, dan membuktikan indahnya buah perjuangan.",
+                themeColor: "#E9D8A6", // Warm Olive
+                avatarGradient: "from-[#2ECC71] to-[#27AE60]"
+            },
+            {
+                rank: 6,
+                name: "MAHARA ALIFA BALQIZ NAHUMARURY",
+                parents: "Bapak Gafur Al Zunaidi Nahumarury & Ibu Salbia Tuasalamony",
+                achievements: [
+                    "Pemenang Prestasi Utama The Champion Rise 2026 Ganesha Operation",
+                    "Peraih Medali Perak Olimpiade PAI Nasional 2024",
+                    "Finalis Olimpiade Sains UNPATTI Bidang Biologi 2026",
+                    "Finalis Olimpiade Sains UNPATTI Bidang Biologi 2025",
+                    "Finalis Olimpiade Sains UNPATTI Bidang Biologi 2024"
+                ],
+                futureCareer: "Teknisi Sipil / Arsitek Hijau",
+                futureDesc: "Merancang infrastruktur masa depan yang ramah lingkungan dan tangguh guna menunjang kemajuan peradaban.",
+                aspiration: "Menjadikan ilmu dan agama sebagai berkah penuntun hidup, tumbuh bijaksana, penuh kasih, dan berdampak luas.",
+                themeColor: "#A3B19B", // Sage Green
+                avatarGradient: "from-[#3498DB] to-[#2980B9]"
+            },
+            {
+                rank: 5,
+                name: "PUTRI TIARA SIOLIMBONA",
+                parents: "Bapak Soleman Siolimbona & Ibu Nurbaya",
+                achievements: [
+                    "Delegasi Utama OSN Matematika Tingkat Kabupaten Tahun 2026",
+                    "Peserta OSN Matematika Tingkat Regional Tahun 2025"
+                ],
+                futureCareer: "Chief Executive / Board of Directors (BOD)",
+                futureDesc: "Memimpin korporasi global dengan kecerdasan strategis berbasis nilai-nilai kemandirian dan integritas kepemimpinan nasional.",
+                aspiration: "Menjelma pribadi unggul, meraih puncak kepemimpinan, dan menjadi kebanggaan bagi banyak orang.",
+                themeColor: "#CCD5AE", // Mint Green
+                avatarGradient: "from-[#9B59B6] to-[#8E44AD]"
+            },
+            {
+                rank: 4,
+                name: "ARYANI SARLATA",
+                parents: "Bapak Ibrahim Sarlata & Ibu Rajunis Yg",
+                achievements: [
+                    "Juara 1 Lomba Olimpiade Bahasa Arab pada Aksioma 2025/2026",
+                    "Juara 1 Lomba Puisi Bahasa Arab pada Aksioma 2024/2025",
+                    "Juara 2 Lomba Hifzhil Qur'an pada Aksioma 2025/2026",
+                    "Juara 2 Lomba Baca Puisi pada Aksioma 2024/2025"
+                ],
+                futureCareer: "Dosen Sastra Arab / Akademisi",
+                futureDesc: "Mendedikasikan diri menyebarkan keindahan literatur bahasa Arab dan nilai keislaman di dunia pendidikan tinggi.",
+                aspiration: "Meraih sukses mandiri dari keringat sendiri demi mewujudkan impian mulia orang tua dan keluarga.",
+                themeColor: "#90E0EF", // Sky Blue
+                avatarGradient: "from-[#34495E] to-[#2C3E50]"
+            },
+            {
+                rank: 3,
+                name: "SITI MARHAMA KOLAKI",
+                parents: "Bapak Sudirman Kolaki & Ibu Diana Idrus",
+                achievements: [
+                    "Ranking 1 Umum Siswa Berprestasi MTsN 1 Maluku Tengah 2024",
+                    "Medali Emas Borongan RSSO Online 2026 (Bahasa Indonesia, PPKn, IPA)",
+                    "Peraih Medali Emas Biologi, Matematika, IPS & B. Inggris OSR 2026",
+                    "Juara 1 Lomba Cerdas Cermat KSM IPA Offline 2025",
+                    "3x Berturut-turut Finalis Utama OSN Pattimura Biologi (2024-2026)"
+                ],
+                futureCareer: "Ilmuwan Riset Bioteknologi",
+                futureDesc: "Mengeksplorasi penelitian sains modern berbasis alam tropis Indonesia guna merintis inovasi biologi terapan global.",
+                aspiration: "Tangguh menghadapi tantangan, terus belajar tanpa lelah demi membanggakan guru, orang tua, dan sesama.",
+                themeColor: "#A8DADC", // Periwinkle Blue
+                avatarGradient: "from-[#E74C3C] to-[#962D22]"
+            },
+            {
+                rank: 2,
+                name: "FELIZA ARTIKA RUMBAWA",
+                parents: "Bapak Mohtar Rumbawa & Ibu Saltiana Eddy",
+                achievements: [
+                    "Juara 1 Medali Emas Kompetisi Nasional Siswa Cendekia IPA 2025",
+                    "Juara 1 Medali Emas Olimpiade Sains Ramadhan (OSR) Biologi 2026",
+                    "Juara 2 Medali Perak Olimpiade Pendidikan Agama Islam Nasional 2024",
+                    "Juara 2 Medali Perak Olimpiade Sains UNPATTI Biologi Maluku (2025-2026)",
+                    "Juara 1 Lomba KSM Aksioma 2024 & Juara 3 Baca Puisi Bahasa Inggris"
+                ],
+                futureCareer: "Dokter Spesialis Bedah Anak",
+                futureDesc: "Mengabdikan segenap talenta medis demi mengukir harapan-harapan baru bagi anak-anak Indonesia yang membutuhkan pertolongan.",
+                aspiration: "Menjadi muslimah berprestasi, berjiwa tangguh, dan mengabdi setulus hati demi kesembuhan sesama.",
+                themeColor: "#BDB2FF", // Royal Lilac
+                avatarGradient: "from-[#117A65] to-[#0E6251]"
+            },
+            {
+                rank: 1,
+                name: "NUR JANNA LESSY TUSEN",
+                parents: "Bapak Zainal Arifin Lessy Tusen & Ibu Kasiati Nur Aini",
+                achievements: [
+                    "Peraih Medali Perunggu Olimpiade Sains UNPATTI Tingkat Provinsi 2026",
+                    "Finalis Utama Olimpiade Sains UNPATTI Tingkat Provinsi 2025",
+                    "Juara 3 Lomba Baca Puisi Bahasa Inggris Tingkat Madrasah 2024"
+                ],
+                futureCareer: "Dokter Utama / Peneliti Medis",
+                futureDesc: "Memimpin perintisan layanan medis inovatif dan mengabdi tanpa pamrih sebagai garda terdepan penyelemat jiwa kemanusiaan.",
+                aspiration: "Mengabdi dengan tulus di dunia medis, meraih puncak prestasi, dan membawa kebanggaan abadi bagi almamater.",
+                themeColor: "#FFD166", // Deep Aurora Gold
+                avatarGradient: "from-[#F1C40F] to-[#D4AC0D]"
+            }
+        ];
+
+        // Membalik urutan peringkat agar tampil klimaks dari Peringkat 10 menuju Peringkat 1
+        const studentsOrdered = [...studentsData];
+
+        let slides = [];
+        let currentSlideIndex = 0;
+        let presWindow = null;
+
+        // State Autoplay
+        let isAutoPlay = false;
+        let autoPlayTimer = null;
+        let countdownTimer = null;
+        let countdownValue = 0;
+    </script>
+
+    <script>
+        function buildSlides() {
+            slides = [];
+
+            // Slide 1: Sampul / Cover
+            slides.push({
+                type: 'cover',
+                bgColor: '#FAF6EE',
+                render: () => `
+                    <div class="h-full flex flex-col justify-center items-center text-center px-16 relative">
+                        <!-- Sudut Kertas Estetik -->
+                        <div class="absolute top-8 left-8 border-t-2 border-l-2 border-black/20 w-12 h-12"></div>
+                        <div class="absolute bottom-8 right-8 border-b-2 border-r-2 border-black/20 w-12 h-12"></div>
+                        
+                        <span class="font-sans text-sm tracking-[0.3em] uppercase text-black/40 font-bold mb-4">Pelepasan Alumni Kelas 9</span>
+                        <h1 class="font-display-journal text-7xl font-extrabold text-[#2C2A29] mb-4 tracking-tight leading-none">
+                            MATAWARU
+                        </h1>
+                        <p class="font-serif-journal italic text-3xl text-black/60 mb-8">
+                            "Mandiri, Tangguh, Wawasan Luas, Rendah Hati, Unggul"
+                        </p>
+                        <div class="w-24 h-[1px] bg-black/20 mb-8"></div>
+                        <p class="max-w-2xl text-sm leading-relaxed text-black/50 uppercase tracking-widest font-semibold">
+                            Sesi Penganugerahan Kehormatan<br>
+                            10 Besar Lulusan Terbaik Angkatan 2026
+                        </p>
+                    </div>
+                `
+            });
+
+            // Slide 2: Pengantar MATAWARU
+            slides.push({
+                type: 'intro',
+                bgColor: '#F4EFE6',
+                render: () => `
+                    <div class="h-full flex flex-col justify-center items-center px-16 text-center">
+                        <div class="washi-tape -top-3 w-40 h-8 left-[calc(50%-80px)]"></div>
+                        <h2 class="font-display-journal text-5xl font-bold mb-8">Misi Jiwa Pemimpin</h2>
+                        <div class="grid grid-cols-5 gap-6 max-w-5xl">
+                            <div class="bg-white/50 border border-black/5 p-6 rounded-2xl">
+                                <span class="font-display-journal text-3xl font-bold text-[#E6A18D] block mb-2">M</span>
+                                <span class="text-xs font-bold uppercase tracking-wider block mb-2">Mandiri</span>
+                                <p class="text-xs text-black/50">Mampu tegak berdiri sendiri, berani mengambil keputusan bajik di masa depan.</p>
+                            </div>
+                            <div class="bg-white/50 border border-black/5 p-6 rounded-2xl">
+                                <span class="font-display-journal text-3xl font-bold text-[#D4A373] block mb-2">A</span>
+                                <span class="text-xs font-bold uppercase tracking-wider block mb-2">Tangguh</span>
+                                <p class="text-xs text-black/50">Pantang bertekuk lutut menghadapi badai hambatan dan perubahan zaman.</p>
+                            </div>
+                            <div class="bg-white/50 border border-black/5 p-6 rounded-2xl">
+                                <span class="font-display-journal text-3xl font-bold text-[#A3B19B] block mb-2">W</span>
+                                <span class="text-xs font-bold uppercase tracking-wider block mb-2">Wawasan Luas</span>
+                                <p class="text-xs text-black/50">Cakrawala pengetahuan tanpa batas, adaptif berwawasan teknologi global.</p>
+                            </div>
+                            <div class="bg-white/50 border border-black/5 p-6 rounded-2xl">
+                                <span class="font-display-journal text-3xl font-bold text-[#A8DADC] block mb-2">R</span>
+                                <span class="text-xs font-bold uppercase tracking-wider block mb-2">Rendah Hati</span>
+                                <p class="text-xs text-black/50">Tetap berpijak di bumi, berakhlakul karimah, dan berjiwa mengayomi.</p>
+                            </div>
+                            <div class="bg-white/50 border border-black/5 p-6 rounded-2xl">
+                                <span class="font-display-journal text-3xl font-bold text-[#FFD166] block mb-2">U</span>
+                                <span class="text-xs font-bold uppercase tracking-wider block mb-2">Unggul</span>
+                                <p class="text-xs text-black/50">Terdepan dalam kebaikan, meraih kualitas spiritual, emosional, & intelektual paripurna.</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            });
+
+            // Slide 3 s.d 32: 10 Siswa (Masing-masing 3 slide)
+            studentsOrdered.forEach(student => {
+                const accentColor = student.themeColor;
+                
+                // MOCKUP AVATAR VEKTOR / SCRAPBOOK JURNAL YANG MEWAH
+                const photoMockup = `
+                    <div class="w-[280px] h-[350px] polaroid-frame p-4 relative flex flex-col justify-between">
+                        <div class="w-full h-[250px] bg-gradient-to-tr ${student.avatarGradient} rounded-lg flex flex-col justify-center items-center text-white relative overflow-hidden shadow-inner">
+                            <!-- Pola Geometris Scrapbook -->
+                            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_0)] bg-[size:16px_16px]"></div>
+                            <span class="font-display-journal text-8xl font-black tracking-tighter opacity-20 select-none">${student.rank}</span>
+                            <div class="absolute bottom-4 left-4 text-left">
+                                <span class="text-[10px] uppercase font-bold tracking-[0.2em] opacity-80 block">MATAWARU LULUSAN</span>
+                                <span class="font-display-journal text-xl font-bold leading-none block">TERBAIK ${student.rank}</span>
+                            </div>
+                        </div>
+                        <div class="text-center pt-2">
+                            <span class="font-serif-journal italic text-lg font-bold text-black/70">Matawaru Generation</span>
+                        </div>
+                    </div>
+                `;
+
+                // Slide A: Identitas Siswa & Orang Tua
+                slides.push({
+                    type: 'student-identity',
+                    student: student,
+                    bgColor: student.themeColor,
+                    render: () => `
+                        <div class="grid grid-cols-12 gap-12 items-center h-full">
+                            <div class="col-span-7 flex flex-col justify-center">
+                                <div class="inline-flex items-center gap-3 mb-6">
+                                    <span class="font-sans text-xs font-extrabold uppercase tracking-[0.3em] px-3.5 py-1.5 bg-black/10 rounded-full">Peringkat 0${student.rank}</span>
+                                    <span class="w-3 h-3 rounded-full animate-ping" style="background-color: ${accentColor};"></span>
+                                </div>
+                                <h1 class="font-display-journal text-6xl font-extrabold tracking-tight mb-4 leading-none text-black/90 uppercase">${student.name}</h1>
+                                <div class="w-16 h-[2px] bg-black/20 my-6"></div>
+                                <div class="space-y-4">
+                                    <div>
+                                        <span class="font-sans text-[10px] font-extrabold uppercase tracking-widest text-black/40 block">Putra / Putri Kebanggaan Dari:</span>
+                                        <p class="font-serif-journal text-3xl font-bold text-black/80">${student.parents}</p>
+                                    </div>
+                                    <div class="pt-4">
+                                        <span class="font-sans text-[10px] font-extrabold uppercase tracking-widest text-black/40 block">Almamater Luhur:</span>
+                                        <p class="font-sans text-sm font-semibold tracking-wide text-black/60 uppercase">MTs Negeri 1 Maluku Tengah</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-span-5 flex justify-center items-center relative">
+                                <div class="washi-tape -top-5 w-32 h-8 left-[15%] rotate-[-6deg]"></div>
+                                ${photoMockup}
+                            </div>
+                        </div>
+                    `
+                });
+
+                // Slide B: Daftar Prestasi Pilihan (Maksimal 5)
+                slides.push({
+                    type: 'student-achievements',
+                    student: student,
+                    bgColor: student.themeColor,
+                    render: () => `
+                        <div class="grid grid-cols-12 gap-12 items-center h-full">
+                            <div class="col-span-7 flex flex-col justify-center">
+                                <span class="font-sans text-xs font-extrabold uppercase tracking-[0.3em] text-black/40 mb-3">Milestone Perjuangan</span>
+                                <h2 class="font-display-journal text-5xl font-bold tracking-tight mb-8">Prestasi Istimewa</h2>
+                                <ul class="space-y-3.5">
+                                    ${student.achievements.map((item, index) => `
+                                        <li class="flex items-start gap-4 bg-white/40 border border-black/5 p-4 rounded-xl shadow-sm transition-all hover:translate-x-1">
+                                            <div class="w-10 h-10 rounded-lg bg-white/70 flex items-center justify-center text-sm font-bold shrink-0 shadow-sm">
+                                                <i class="fa-solid ${index === 0 ? 'fa-trophy text-amber-500' : (index === 1 ? 'fa-star text-amber-500' : 'fa-award text-blue-500')}"></i>
+                                            </div>
+                                            <p class="text-sm font-semibold text-black/80 leading-relaxed">${item}</p>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                            <div class="col-span-5 flex justify-center items-center relative">
+                                <div class="washi-tape -top-5 w-32 h-8 left-[45%] rotate-[3deg]"></div>
+                                ${photoMockup}
+                            </div>
+                        </div>
+                    `
+                });
+
+                // Slide C: Cita-cita, Misi, dan Harapan Siswa
+                slides.push({
+                    type: 'student-future',
+                    student: student,
+                    bgColor: student.themeColor,
+                    render: () => `
+                        <div class="grid grid-cols-12 gap-12 items-center h-full">
+                            <div class="col-span-7 flex flex-col justify-center">
+                                <span class="font-sans text-xs font-extrabold uppercase tracking-[0.3em] text-black/40 mb-3">Visi Masa Depan</span>
+                                <h2 class="font-display-journal text-5xl font-bold tracking-tight mb-8">Impian & Langkah Berani</h2>
+                                <div class="space-y-6">
+                                    <div class="bg-white/65 p-6 rounded-2xl border border-black/5 relative shadow-sm">
+                                        <div class="absolute -top-3 left-6 px-3 py-1 bg-black text-white text-[10px] font-bold uppercase tracking-widest rounded">Target Karir</div>
+                                        <h3 class="font-display-journal text-3xl font-bold text-black/95 leading-none mb-2 mt-1">${student.futureCareer}</h3>
+                                        <p class="text-xs text-black/55 leading-relaxed font-medium">${student.futureDesc}</p>
+                                    </div>
+                                    <div class="border-t border-black/10 pt-5">
+                                        <span class="font-sans text-[10px] font-extrabold uppercase tracking-widest text-black/40 block mb-1">Harapan Luhur & Resolusi:</span>
+                                        <p class="font-serif-journal italic text-2xl font-bold leading-relaxed text-black/80">"${student.aspiration}"</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-span-5 flex justify-center items-center relative">
+                                <div class="washi-tape -top-5 w-32 h-8 left-[30%] rotate-[-4deg]"></div>
+                                ${photoMockup}
+                            </div>
+                        </div>
+                    `
+                });
+            });
+
+            // Slide 33: Jejaring Matawaru (Slide Interkoneksi)
+            slides.push({
+                type: 'networking',
+                bgColor: '#0F0E14',
+                render: () => {
+                    // Membuat rasi bintang melingkar di tengah
+                    const radius = 220;
+                    const centerX = 640;
+                    const centerY = 330;
+                    
+                    const nodesHtml = studentsOrdered.map((st, idx) => {
+                        const angle = (idx * (360 / studentsOrdered.length)) * (Math.PI / 180);
+                        const x = centerX + radius * Math.cos(angle);
+                        const y = centerY + radius * Math.sin(angle);
+                        
+                        return `
+                            <!-- Titik Siswa -->
+                            <g class="cursor-pointer" onclick="window.opener ? window.opener.jumpToSlide(${2 + (idx * 3)}) : jumpToSlide(${2 + (idx * 3)})">
+                                <circle cx="${x}" cy="${y}" r="22" fill="#181622" stroke="${st.themeColor}" stroke-width="4" class="pulse-node" style="--glow-color: ${st.themeColor};" />
+                                <text x="${x}" y="${y + 5}" fill="#ffffff" font-family="var(--font-sans)" font-size="12" font-weight="800" text-anchor="middle">${st.rank}</text>
+                                <text x="${x}" y="${y + 38}" fill="#ffffff" font-family="var(--font-sans)" font-size="9" font-weight="700" text-anchor="middle" opacity="0.75" class="uppercase tracking-wider">${st.name.split(' ')[0]}</text>
+                            </g>
+                        `;
+                    }).join('');
+
+                    // Merajut garis-garis koneksi di latar belakang rasi bintang
+                    let linesHtml = "";
+                    for (let i = 0; i < studentsOrdered.length; i++) {
+                        const angleI = (i * (360 / studentsOrdered.length)) * (Math.PI / 180);
+                        const xI = centerX + radius * Math.cos(angleI);
+                        const yI = centerY + radius * Math.sin(angleI);
+
+                        for (let j = i + 1; j < studentsOrdered.length; j++) {
+                            const angleJ = (j * (360 / studentsOrdered.length)) * (Math.PI / 180);
+                            const xJ = centerX + radius * Math.cos(angleJ);
+                            const yJ = centerY + radius * Math.sin(angleJ);
+                            
+                            linesHtml += `<line x1="${xI}" y1="${yI}" x2="${xJ}" y2="${yJ}" stroke="rgba(255,255,255,0.08)" stroke-width="1.2" />`;
+                        }
+                    }
+
+                    return `
+                        <div class="h-full w-full flex flex-col justify-between p-2 relative text-white">
+                            <div class="text-center mt-4">
+                                <span class="font-sans text-xs font-extrabold uppercase tracking-[0.35em] text-[#FFD166] block mb-1">Kekuatan Kolektif</span>
+                                <h1 class="font-display-journal text-4xl font-extrabold leading-none uppercase">JEJARING MATAWARU</h1>
+                                <p class="font-serif-journal italic text-sm text-white/50 max-w-lg mx-auto mt-2">“Masing-masing dari kita unik, namun sebagai satu kesatuan rasi bintang, kita berdaya penuh berkontribusi bagi kebaikan komunitas kita.”</p>
+                            </div>
+                            
+                            <!-- SVG Rasi Bintang Interaktif -->
+                            <svg class="absolute inset-0 w-full h-full pointer-events-auto" style="z-index: 1;">
+                                <g>
+                                    ${linesHtml}
+                                </g>
+                                <!-- Lingkaran Pusat MATAWARU -->
+                                <circle cx="${centerX}" cy="${centerY}" r="50" fill="#181622" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
+                                <text x="${centerX}" y="${centerY - 8}" fill="#ffffff" font-family="var(--font-display)" font-size="12" font-weight="bold" text-anchor="middle" tracking="2">ANGKATAN</p>
+                                <text x="${centerX}" y="${centerY + 14}" fill="#FFD166" font-family="var(--font-display)" font-size="18" font-weight="900" text-anchor="middle" letter-spacing="2">PELOPOR</p>
+                                <g>
+                                    ${nodesHtml}
+                                </g>
+                            </svg>
+                            
+                            <div class="text-center mb-4 text-[10px] text-white/30 uppercase tracking-widest font-semibold z-10 pointer-events-none">
+                                Klik simpul manapun untuk mendalami profil siswa secara instan
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            // Slide 34: Penutup / Closing
+            slides.push({
+                type: 'outro',
+                bgColor: '#FAF6EE',
+                render: () => `
+                    <div class="h-full flex flex-col justify-center items-center text-center px-16 relative">
+                        <div class="absolute top-8 left-8 border-t-2 border-l-2 border-black/20 w-12 h-12"></div>
+                        <div class="absolute bottom-8 right-8 border-b-2 border-r-2 border-black/20 w-12 h-12"></div>
+                        
+                        <span class="font-sans text-sm tracking-[0.3em] uppercase text-black/40 font-bold mb-4">Misi Selesai</span>
+                        <h1 class="font-display-journal text-6xl font-extrabold text-[#2C2A29] mb-4 uppercase">
+                            TERIMA KASIH
+                        </h1>
+                        <p class="font-serif-journal italic text-2xl text-black/60 mb-8 max-w-xl">
+                            "Selamat berjuang di samudera kehidupan baru. Kibarkan setinggi langit jiwa mulia MATAWARU demi kemaslahatan semesta."
+                        </p>
+                        <div class="w-16 h-[1px] bg-black/20 mb-8"></div>
+                        <p class="text-[10px] uppercase tracking-widest font-extrabold text-black/50">
+                            Madrasah Tsanawiyah Negeri 1 Maluku Tengah
+                        </p>
+                    </div>
+                `
+            });
+        }
+    </script>
+
+    <script>
+        function renderPresentationView() {
+            const root = document.getElementById('app-root');
+            root.className = "min-h-screen flex items-center justify-center overflow-hidden w-full bg-[#0d0d11]";
+            
+            root.innerHTML = `
+                <div id="presentation-container" class="relative overflow-hidden rounded-2xl shadow-2xl transition-all duration-300">
+                    <div id="canvas" class="paper-texture relative flex flex-col justify-between p-12 overflow-hidden select-none w-[1280px] h-[720px] transition-colors duration-700">
+                        
+                        <!-- Header Proyektor -->
+                        <div class="flex justify-between items-center w-full relative z-10">
+                            <div class="flex items-center gap-3">
+                                <span class="w-2.5 h-2.5 rounded-full bg-black/20" id="live-indicator"></span>
+                                <span class="font-sans text-[10px] tracking-[0.25em] text-black/40 font-extrabold uppercase">PELEPASAN MTsN 1 MALUKU TENGAH</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="font-sans text-[10px] text-black/30 font-bold tracking-widest uppercase">MATAWARU 2026</span>
+                            </div>
+                        </div>
+
+                        <!-- Area Konten Slide Aktif -->
+                        <div class="relative z-10 flex-grow flex items-center w-full h-[500px]" id="slide-viewport">
+                            <!-- Diisi lewat fungsi JS -->
+                        </div>
+
+                        <!-- Footer Proyektor -->
+                        <div class="flex justify-between items-center w-full pt-4 border-t border-black/5 relative z-10">
+                            <span id="slide-counter" class="font-sans text-[10px] text-black/30 tracking-[0.2em] font-extrabold">SLIDE -- / --</span>
+                            <span class="font-sans text-[9px] text-black/20 tracking-wider font-semibold">TAMPILAN LAYAR UTAMA (16:9)</span>
+                        </div>
+
+                    </div>
+                </div>
+            `;
+
+            buildSlides();
+            displaySlide(currentSlideIndex);
+            handleAspectResize();
+            
+            window.addEventListener('resize', handleAspectResize);
+
+            // Penerima PostMessage dari operator
+            window.addEventListener('message', (event) => {
+                if (event.data && event.data.type === 'SYNC_SLIDE_TO_PROYECTOR') {
+                    displaySlide(event.data.index);
+                }
+            });
+
+            // Mengirim kabar balik ke Operator
+            if (window.opener) {
+                try {
+                    window.opener.postMessage({ type: 'PROYECTOR_READY' }, '*');
+                } catch (e) {
+                    console.warn(e);
+                }
+            }
+        }
+
+        function handleAspectResize() {
+            const container = document.getElementById('presentation-container');
+            if (!container) return;
+            const targetWidth = 1280;
+            const targetHeight = 720;
+
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            let scale = Math.min(windowWidth / targetWidth, windowHeight / targetHeight);
+            
+            container.style.width = `${targetWidth}px`;
+            container.style.height = `${targetHeight}px`;
+            container.style.transform = `scale(${scale})`;
+            container.style.transformOrigin = 'center center';
+            
+            container.parentElement.style.height = `${targetHeight * scale}px`;
+            container.parentElement.style.width = `${targetWidth * scale}px`;
+        }
+
+        function displaySlide(index) {
+            if (index < 0 || index >= slides.length) return;
+            currentSlideIndex = index;
+            const slide = slides[index];
+
+            const canvas = document.getElementById('canvas');
+            const viewport = document.getElementById('slide-viewport');
+            const counter = document.getElementById('slide-counter');
+            const liveIndicator = document.getElementById('live-indicator');
+
+            if (!canvas || !viewport) return;
+
+            // Transisi Background Shifting Gradual
+            if (slide.bgColor) {
+                canvas.style.backgroundColor = slide.bgColor;
+                canvas.classList.remove('paper-texture');
+                // Beri efek redup jika gelap
+                if (slide.bgColor === '#0F0E14') {
+                    canvas.classList.add('bg-opacity-100');
+                    liveIndicator.style.backgroundColor = 'rgba(255,255,255,0.2)';
+                } else {
+                    liveIndicator.style.backgroundColor = 'rgba(0,0,0,0.2)';
+                }
+            } else {
+                canvas.style.backgroundColor = 'var(--paper-color)';
+                canvas.classList.add('paper-texture');
+            }
+
+            // Ganti Konten dengan animasi
+            viewport.innerHTML = `
+                <div class="w-full h-full slide-fade-enter" id="slide-transition-box">
+                    ${slide.render()}
+                </div>
+            `;
+
+            setTimeout(() => {
+                const box = document.getElementById('slide-transition-box');
+                if (box) box.classList.add('slide-fade-active');
+            }, 50);
+
+            if (counter) {
+                counter.innerText = `SLIDE ${(index + 1).toString().padStart(2, '0')} / ${slides.length.toString().padStart(2, '0')}`;
+            }
+
+            // Beri tahu operator perubahan indeks manual di layar proyektor
+            if (window.opener) {
+                try {
+                    window.opener.postMessage({ type: 'SLIDE_CHANGED_REMOTE', index: index }, '*');
+                } catch (e) {
+                    console.warn(e);
+                }
+            }
+        }
+    </script>
+
+    <script>
+        function renderOperatorView() {
+            const root = document.getElementById('app-root');
+            root.className = "min-h-screen w-full bg-[#050409] flex flex-col justify-between p-6 overflow-y-auto";
+
+            root.innerHTML = `
+                <div class="max-w-7xl w-full mx-auto bg-[#0C0B12] border border-white/10 rounded-2xl p-6 shadow-2xl flex-grow flex flex-col justify-between gap-6">
+                    
+                    <!-- Header Panel Operator -->
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-white/10 pb-4">
+                        <div>
+                            <h1 class="font-sans text-xl font-black uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-500">
+                                PANEL OPERATOR PELEPASAN 2026
+                            </h1>
+                            <p class="text-xs text-white/50 mt-1">Sistem sinkronisasi proyektor panggung utama pelepasan siswa berprestasi MTsN 1 Maluku Tengah.</p>
+                        </div>
+                        
+                        <div class="flex items-center gap-3">
+                            <div id="connection-status" class="flex items-center gap-2 px-3 py-1.5 bg-red-500/10 border border-red-500/30 text-red-500 text-xs font-bold rounded-lg uppercase tracking-wider">
+                                <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+                                Proyektor Terputus
+                            </div>
+                            <button onclick="openPresentationWindow()" class="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-pink-600 hover:opacity-95 text-white font-bold text-sm tracking-wide rounded-xl shadow-lg transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2">
+                                <i class="fa-solid fa-desktop"></i>
+                                Buka Jendela Presentasi
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Area Monitor Dan Kendali -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <!-- Detail Slide Aktif -->
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-5 flex flex-col justify-between">
+                            <div>
+                                <span class="text-[10px] text-white/40 uppercase tracking-widest block font-bold">Slide Aktif Saat Ini</span>
+                                <h2 id="operator-slide-title" class="text-2xl font-black text-white mt-2 font-display-journal truncate">Memuat...</h2>
+                                <p id="operator-slide-desc" class="text-xs text-white/60 mt-2 leading-relaxed">Menunggu inisialisasi panggung selesai.</p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-white/5 flex justify-between items-center">
+                                <span id="operator-slide-index" class="text-xs font-bold text-pink-500">SLIDE 00 / 00</span>
+                                <span id="operator-slide-type" class="text-[9px] px-2 py-0.5 rounded bg-white/5 text-white/50 border border-white/10 font-bold uppercase tracking-wider">---</span>
+                            </div>
+                        </div>
+
+                        <!-- Kendali Utama Panggung -->
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-5 md:col-span-2 flex flex-col justify-between">
+                            <div>
+                                <span class="text-[10px] text-white/40 uppercase tracking-widest block font-bold">Navigasi Panggung</span>
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-3">
+                                    <button onclick="sendPrevSlide()" class="h-12 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-bold text-xs flex items-center justify-center gap-1.5 active:scale-95 transition-all">
+                                        <i class="fa-solid fa-chevron-left"></i> SEBELUMNYA
+                                    </button>
+                                    <button onclick="sendNextSlide()" class="h-12 bg-gradient-to-r from-pink-600 to-amber-600 hover:opacity-90 rounded-xl text-white font-bold text-xs flex items-center justify-center gap-1.5 active:scale-95 transition-all shadow-md">
+                                        BERIKUTNYA <i class="fa-solid fa-chevron-right"></i>
+                                    </button>
+                                    <button onclick="sendCover()" class="h-12 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-bold text-xs flex items-center justify-center gap-1.5 active:scale-95 transition-all">
+                                        <i class="fa-solid fa-home"></i> SAMPUL
+                                    </button>
+                                    <button onclick="sendOutro()" class="h-12 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-bold text-xs flex items-center justify-center gap-1.5 active:scale-95 transition-all">
+                                        <i class="fa-solid fa-flag-checkered"></i> PENUTUP
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-4 text-[10px] text-white/40">
+                                <span class="bg-white/5 px-2 py-1 rounded">Spasi / Kanan: Slide Lanjut</span>
+                                <span class="bg-white/5 px-2 py-1 rounded">Kiri: Slide Mundur</span>
+                            </div>
+                        </div>
+
+                        <!-- Autoplay Adaptif (Loop Slide 3 - 32) -->
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-5 flex flex-col justify-between">
+                            <div>
+                                <span class="text-[10px] text-white/40 uppercase tracking-widest block font-bold">Autoplay Loop (S3 - S32)</span>
+                                <button id="autoplay-btn" onclick="toggleAutoPlay()" class="w-full h-11 mt-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-bold text-xs flex items-center justify-center gap-2 active:scale-95 transition-all">
+                                    <i class="fa-solid fa-play"></i> AKTIFKAN AUTOPLAY
+                                </button>
+                            </div>
+                            <div id="autoplay-indicator" class="mt-2 hidden">
+                                <div class="flex justify-between text-[10px] text-white/50 mb-1 font-semibold uppercase tracking-wider">
+                                    <span id="autoplay-countdown">Menunggu...</span>
+                                </div>
+                                <div class="w-full bg-white/5 h-1.5 rounded-full overflow-hidden border border-white/5">
+                                    <div id="autoplay-progress" class="h-full bg-gradient-to-r from-pink-500 to-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)] transition-all duration-1000 ease-linear" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="text-[9px] text-white/40 leading-relaxed mt-1">
+                                <i class="fa-solid fa-clock-rotate-left mr-1"></i> Waktu Baca: Identitas (6d), Prestasi (12d), Harapan (8d).
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lompat Cepat Per Peringkat -->
+                    <div>
+                        <span class="text-xs font-semibold text-white/60 uppercase tracking-wider block mb-3">Lompat Ke Peringkat Tertentu:</span>
+                        <div id="student-quick-links" class="flex flex-wrap gap-2">
+                            <!-- Disuntikkan lewat JS -->
+                        </div>
+                    </div>
+
+                    <!-- Linimasa Linier Slide -->
+                    <div>
+                        <span class="text-xs font-semibold text-white/60 uppercase tracking-wider block mb-3">Linimasa Semua Slide:</span>
+                        <div id="slide-timeline-selector" class="flex gap-3 overflow-x-auto pb-3 select-none no-scrollbar">
+                            <!-- Disuntikkan lewat JS -->
+                        </div>
+                    </div>
+
+                </div>
+            `;
+
+            buildSlides();
+            renderOperatorUIElements();
+            updateOperatorUI();
+
+            // Dengarkan kabar balik dari Proyektor
+            window.addEventListener('message', (event) => {
+                if (event.data && event.data.type === 'PROYECTOR_READY') {
+                    updateConnectionStatus(true);
+                    syncToPresentation();
+                }
+                if (event.data && event.data.type === 'SLIDE_CHANGED_REMOTE') {
+                    currentSlideIndex = event.data.index;
+                    updateOperatorUI();
+                }
+            });
+        }
+
+        function openPresentationWindow() {
+            const separator = window.location.href.includes('?') ? '&' : '?';
+            const targetUrl = window.location.href + separator + "mode=presentation";
+            
+            presWindow = window.open(targetUrl, 'MatawaruPresentationWindow', 'width=1280,height=720,menubar=no,toolbar=no,location=no,status=no');
+            
+            if (presWindow) {
+                updateConnectionStatus(true);
+                setTimeout(() => {
+                    syncToPresentation();
+                }, 1000);
+            } else {
+                // Gunakan kotak pesan terintegrasi di UI untuk menggantikan alert()
+                const statusIndicator = document.getElementById('connection-status');
+                statusIndicator.innerText = "Izinkan Pop-Up Browser!";
+            }
+        }
+
+        function updateConnectionStatus(isConnected) {
+            const statusIndicator = document.getElementById('connection-status');
+            if (!statusIndicator) return;
+            if (isConnected) {
+                statusIndicator.className = "flex items-center gap-2 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 text-xs font-bold rounded-lg uppercase tracking-wider";
+                statusIndicator.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Proyektor Terhubung`;
+            } else {
+                statusIndicator.className = "flex items-center gap-2 px-3 py-1.5 bg-red-500/10 border border-red-500/30 text-red-500 text-xs font-bold rounded-lg uppercase tracking-wider";
+                statusIndicator.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span> Proyektor Terputus`;
+            }
+        }
+
+        function syncToPresentation() {
+            let connected = false;
+            try {
+                if (presWindow && !presWindow.closed) {
+                    presWindow.postMessage({ type: 'SYNC_SLIDE_TO_PROYECTOR', index: currentSlideIndex }, '*');
+                    connected = true;
+                }
+            } catch (err) {
+                console.warn(err);
+            }
+            updateConnectionStatus(connected);
+            updateOperatorUI();
+
+            if (isAutoPlay) {
+                startAutoPlayTimer();
+            }
+        }
+
+        function renderOperatorUIElements() {
+            const quickLinks = document.getElementById('student-quick-links');
+            const timeline = document.getElementById('slide-timeline-selector');
+
+            if (!quickLinks || !timeline) return;
+
+            quickLinks.innerHTML = '';
+            timeline.innerHTML = '';
+
+            // Render pintasan siswa 10 ke 1
+            studentsOrdered.forEach(student => {
+                const btn = document.createElement('button');
+                btn.className = "px-3 py-2 border rounded-xl text-xs font-bold transition-all active:scale-95 flex items-center gap-2 border-white/10 text-white/80 bg-white/5 hover:bg-white/10";
+                
+                // Set warna aksen border berdasarkan warna khas
+                btn.style.borderColor = `${student.themeColor}40`;
+                btn.style.color = student.themeColor;
+
+                btn.innerHTML = `<span>R0${student.rank}</span> <span class="text-white/20">|</span> <span class="text-white font-medium truncate max-w-[100px]">${student.name.split(' ')[0]}</span>`;
+                
+                // Menghitung indeks awal slide siswa (setelah Cover & Intro)
+                const studentIndexInSlides = 2 + (10 - student.rank) * 3;
+                btn.onclick = () => jumpToSlide(studentIndexInSlides);
+                quickLinks.appendChild(btn);
+            });
+
+            // Render timeline linier lengkap
+            slides.forEach((slide, i) => {
+                const card = document.createElement('button');
+                card.id = `timeline-card-${i}`;
+                card.className = "flex-shrink-0 w-28 h-16 rounded-xl border flex flex-col justify-between p-2.5 text-left cursor-pointer transition-all duration-200 select-none bg-[#111018] border-white/5 text-white/40 hover:border-white/15";
+                
+                let title = "Sampul";
+                let badge = `S-${i+1}`;
+                
+                if (slide.type === 'student-identity') {
+                    title = `R${slide.student.rank} Profil`;
+                } else if (slide.type === 'student-achievements') {
+                    title = `R${slide.student.rank} Prestasi`;
+                } else if (slide.type === 'student-future') {
+                    title = `R${slide.student.rank} Karir`;
+                } else if (slide.type === 'intro') {
+                    title = "Arahan";
+                } else if (slide.type === 'networking') {
+                    title = "Jejaring";
+                } else if (slide.type === 'outro') {
+                    title = "Penutup";
+                }
+                
+                card.innerHTML = `
+                    <span class="text-[9px] uppercase font-bold tracking-wider truncate w-full block">${title}</span>
+                    <span class="text-[9px] text-white/30 font-sans">${badge}</span>
+                `;
+                card.onclick = () => jumpToSlide(i);
+                timeline.appendChild(card);
+            });
+        }
+
+        function jumpToSlide(index) {
+            currentSlideIndex = index;
+            syncToPresentation();
+        }
+
+        function updateOperatorUI() {
+            if (slides.length === 0) return;
+            const slide = slides[currentSlideIndex];
+
+            const titleEl = document.getElementById('operator-slide-title');
+            const descEl = document.getElementById('operator-slide-desc');
+            const indexEl = document.getElementById('operator-slide-index');
+            const typeEl = document.getElementById('operator-slide-type');
+
+            if (!titleEl || !descEl) return;
+
+            if (slide.type === 'cover') {
+                titleEl.innerText = "Sampul Utama";
+                descEl.innerText = "Tampilan pembuka visual MATAWARU Pelepasan 2026.";
+                typeEl.innerText = "Cover";
+            } else if (slide.type === 'intro') {
+                titleEl.innerText = "Pengantar Misi";
+                descEl.innerText = "Penyampaian esensi filosofis dari prinsip kepemimpinan MATAWARU.";
+                typeEl.innerText = "Intro";
+            } else if (slide.type.startsWith('student-')) {
+                titleEl.innerText = slide.student.name;
+                const stage = slide.type === 'student-identity' ? 'Profil & Ortu' : (slide.type === 'student-achievements' ? 'Awan Prestasi' : 'Cita-Cita & Harapan');
+                descEl.innerText = `Menampilkan ${stage} dari nominasi terbaik Peringkat 0${slide.student.rank}.`;
+                typeEl.innerText = `S-${slide.student.rank}`;
+            } else if (slide.type === 'networking') {
+                titleEl.innerText = "Jejaring Matawaru";
+                descEl.innerText = "Peta visual rasi bintang keterhubungan 10 besar lulusan terbaik.";
+                typeEl.innerText = "Network";
+            } else if (slide.type === 'outro') {
+                titleEl.innerText = "Ucapan Penutup";
+                descEl.innerText = "Doa pelepasan luhur dan ucapan terima kasih akhir.";
+                typeEl.innerText = "Closing";
+            }
+
+            indexEl.innerText = `SLIDE ${(currentSlideIndex + 1).toString().padStart(2, '0')} / ${slides.length.toString().padStart(2, '0')}`;
+
+            // Soroti kartu aktif di timeline
+            document.querySelectorAll('[id^="timeline-card-"]').forEach(card => {
+                card.classList.remove('border-pink-500', 'bg-pink-500/10', 'text-white', 'shadow-[0_0_10px_rgba(224,33,138,0.15)]');
+                card.classList.add('border-white/5', 'text-white/40');
+            });
+
+            const activeCard = document.getElementById(`timeline-card-${currentSlideIndex}`);
+            if (activeCard) {
+                activeCard.classList.remove('border-white/5', 'text-white/40');
+                activeCard.classList.add('border-pink-500', 'bg-pink-500/10', 'text-white', 'shadow-[0_0_10px_rgba(224,33,138,0.15)]');
+                activeCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        }
+
+        // KENDALI PENYIMPANAN WAKTU DAN AUTOPLAY LOOP
+        function getSlideDuration(index) {
+            const slide = slides[index];
+            if (!slide) return 8;
+            if (slide.type === 'cover' || slide.type === 'intro' || slide.type === 'networking' || slide.type === 'outro') {
+                return 8; 
+            }
+            if (slide.type === 'student-identity') return 6; // Pengenalan nama & ortu: 6d
+            if (slide.type === 'student-achievements') return 12; // Membaca deret prestasi: 12d
+            if (slide.type === 'student-future') return 8; // Membaca cita-cita & impian: 8d
+            return 8;
+        }
+
+        function toggleAutoPlay() {
+            isAutoPlay = !isAutoPlay;
+            const btn = document.getElementById('autoplay-btn');
+            const indicator = document.getElementById('autoplay-indicator');
+
+            if (!btn || !indicator) return;
+            
+            if (isAutoPlay) {
+                btn.innerHTML = `<i class="fa-solid fa-pause"></i> PAUSE AUTOPLAY`;
+                btn.className = "w-full h-11 mt-3 bg-amber-500/10 border border-amber-500/30 text-amber-400 rounded-xl font-bold text-xs flex items-center justify-center gap-2 active:scale-95 transition-all shadow-[0_0_10px_rgba(245,158,11,0.15)]";
+                indicator.classList.remove('hidden');
+                startAutoPlayTimer();
+            } else {
+                btn.innerHTML = `<i class="fa-solid fa-play"></i> AKTIFKAN AUTOPLAY`;
+                btn.className = "w-full h-11 mt-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-bold text-xs flex items-center justify-center gap-2 active:scale-95 transition-all";
+                indicator.classList.add('hidden');
+                clearAutoPlayTimers();
+            }
+        }
+
+        function clearAutoPlayTimers() {
+            if (autoPlayTimer) clearTimeout(autoPlayTimer);
+            if (countdownTimer) clearInterval(countdownTimer);
+        }
+
+        function startAutoPlayTimer() {
+            clearAutoPlayTimers();
+            if (!isAutoPlay) return;
+
+            const duration = getSlideDuration(currentSlideIndex);
+            countdownValue = duration;
+            updateCountdownUI();
+
+            countdownTimer = setInterval(() => {
+                countdownValue--;
+                updateCountdownUI();
+                if (countdownValue <= 0) {
+                    clearInterval(countdownTimer);
+                }
+            }, 1000);
+
+            autoPlayTimer = setTimeout(() => {
+                advanceSlideAuto();
+            }, duration * 1000);
+        }
+
+        function updateCountdownUI() {
+            const label = document.getElementById('autoplay-countdown');
+            const progress = document.getElementById('autoplay-progress');
+            if (label) {
+                label.innerText = `Lanjut Otomatis Dalam ${countdownValue} Detik...`;
+            }
+            if (progress) {
+                const totalDuration = getSlideDuration(currentSlideIndex);
+                const percent = (countdownValue / totalDuration) * 100;
+                progress.style.width = `${percent}%`;
+            }
+        }
+
+        function advanceSlideAuto() {
+            if (!isAutoPlay) return;
+
+            // Loop Autoplay dikunci dari Slide 3 (Indeks 2) s.d Slide 32 (Indeks 31)
+            if (currentSlideIndex < 2 || currentSlideIndex >= 31) {
+                currentSlideIndex = 2; // Kembali ke profil pertama
+            } else {
+                currentSlideIndex++;
+            }
+            syncToPresentation();
+        }
+
+        function sendNextSlide() {
+            if (currentSlideIndex < slides.length - 1) {
+                currentSlideIndex++;
+                syncToPresentation();
+            }
+        }
+
+        function sendPrevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                syncToPresentation();
+            }
+        }
+
+        function sendCover() {
+            currentSlideIndex = 0;
+            syncToPresentation();
+        }
+
+        function sendOutro() {
+            currentSlideIndex = slides.length - 1;
+            syncToPresentation();
+        }
+    </script>
+
+    <script>
+        // Keyboard global controller
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'Space' || e.code === 'Space') {
+                e.preventDefault();
+                sendNextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                sendPrevSlide();
+            }
+        });
+
+        // Deteksi mode muat dari query param
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const isPresentationMode = urlParams.get('mode') === 'presentation';
+
+            if (isPresentationMode) {
+                renderPresentationView();
+            } else {
+                renderOperatorView();
+            }
+        };
+
+        window.onbeforeunload = function() {
+            if (presWindow && !presWindow.closed) {
+                presWindow.close();
+            }
+        };
+    </script>
+
+</body>
+</html>
