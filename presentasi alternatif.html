@@ -955,12 +955,12 @@
                     <div class="student-intro-photo-glow" style="background: radial-gradient(circle, ${accentColor} 0%, transparent 72%);"></div>
                     <div class="student-intro-photo-frame">
                         <img
-                            src="${getPhotoPath(rank, 'resmi')}"
-                            alt="Foto resmi siswa peringkat ${rank}"
+                            src="${getPhotoPath(rank, 'intro')}"
+                            alt="Foto intro siswa peringkat ${rank}"
                             class="student-intro-photo-img"
                             data-rank="${rank}"
-                            data-variant="resmi"
-                            data-tried="resmi"
+                            data-variant="intro"
+                            data-tried="intro"
                             onerror="fallbackStudentPhoto(this)"
                         />
                     </div>
@@ -1149,17 +1149,17 @@
 
                         <div class="grid grid-cols-3 gap-4 max-w-5xl mx-auto w-full mb-4">
                             <div class="bg-white/70 border border-black/10 p-4 rounded-2xl text-left mission-card-pop" style="animation-delay:0.1s;">
-                                <span class="font-display-journal text-4xl font-black text-[#E6A18D] block">M</span>
+                                <span class="font-display-journal text-4xl font-black text-[#E6A18D] block">MA</span>
                                 <span class="text-sm font-extrabold uppercase tracking-wider block mt-1 mb-1">Mandiri</span>
                                 <p class="text-[12px] leading-snug text-black/65">Berani mengambil keputusan yang tepat dan bertanggung jawab.</p>
                             </div>
                             <div class="bg-white/70 border border-black/10 p-4 rounded-2xl text-left mission-card-pop" style="animation-delay:0.2s;">
-                                <span class="font-display-journal text-4xl font-black text-[#D4A373] block">A</span>
+                                <span class="font-display-journal text-4xl font-black text-[#D4A373] block">TA</span>
                                 <span class="text-sm font-extrabold uppercase tracking-wider block mt-1 mb-1">Tangguh</span>
                                 <p class="text-[12px] leading-snug text-black/65">Kokoh menghadapi tantangan dan perubahan dengan ketekunan.</p>
                             </div>
                             <div class="bg-white/70 border border-black/10 p-4 rounded-2xl text-left mission-card-pop" style="animation-delay:0.3s;">
-                                <span class="font-display-journal text-4xl font-black text-[#A3B19B] block">W</span>
+                                <span class="font-display-journal text-4xl font-black text-[#A3B19B] block">WA</span>
                                 <span class="text-sm font-extrabold uppercase tracking-wider block mt-1 mb-1">Wawasan Luas</span>
                                 <p class="text-[12px] leading-snug text-black/65">Terbuka pada ilmu, teknologi, dan pembelajaran sepanjang hayat.</p>
                             </div>
@@ -1450,11 +1450,11 @@
                 return `
                     <div class="h-full w-full flex flex-col justify-center px-12 py-3 text-center">
                         <h2 class="font-display-journal text-[82px] font-black text-black/90 mb-5 content-rise">Arahan MATAWARU</h2>
-                        <p class="text-[24px] font-semibold text-black/70 mb-5 content-rise" style="animation-delay:0.1s;">Lima kompas karakter yang menuntun langkah angkatan.</p>
+                        <p class="text-[24px] font-semibold text-black/70 mb-5 content-rise" style="animation-delay:0.1s;">Lima kompas karakter yang menuntun langkah.</p>
                         <div class="grid grid-cols-3 gap-4 max-w-5xl mx-auto w-full mb-4">
-                            <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88 mission-card-pop" style="animation-delay:0.1s;">M - Mandiri</div>
-                            <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88 mission-card-pop" style="animation-delay:0.2s;">A - Tangguh</div>
-                            <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88 mission-card-pop" style="animation-delay:0.3s;">W - Wawasan Luas</div>
+                            <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88 mission-card-pop" style="animation-delay:0.1s;">MA - Mandiri</div>
+                            <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88 mission-card-pop" style="animation-delay:0.2s;">TA - Tangguh</div>
+                            <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88 mission-card-pop" style="animation-delay:0.3s;">WA - Wawasan Luas</div>
                         </div>
                         <div class="grid grid-cols-2 gap-4 max-w-3xl mx-auto w-full">
                             <div class="bg-white/80 border border-black/10 rounded-2xl px-6 py-5 text-[34px] font-black text-black/88 mission-card-pop" style="animation-delay:0.4s;">R - Rendah Hati</div>
